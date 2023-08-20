@@ -1,24 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 import { Dynamic } from "../context/ToDynamicContext";
-import Button from "./Button";
-import FormConnect from "../components/Forms/FormConnect";
-import FormRegister from "../components/Forms/FormRegister";
-import { MdLogin } from "react-icons/md";
+import BoxConnectRegister from "../components/BoxConnectRegister";
 
 const PopUp = () => {
   const { setPopChange } = Dynamic();
-  const [connect, setConnect] = useState(true);
   return (
     <StyledPopUp onClick={() => setPopChange(false)}>
-      <div onClick={(e) => e.stopPropagation()}>
-        <Button
-          text={connect ? "S'inscrire" : "Connexion"}
-          icon={<MdLogin />}
-          actionClick={() => setConnect(!connect)}
-        />
-        {connect ? <FormConnect /> : <FormRegister />}
-      </div>
+      <BoxConnectRegister />
     </StyledPopUp>
   );
 };
@@ -37,9 +26,7 @@ const StyledPopUp = styled.div`
   backdrop-filter: blur(5px);
   transform: translate(50%, -50%);
   overflow-y: hidden;
-  div {
-    height: 20vh;
-    width: 12%;
-    background: greenyellow;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
