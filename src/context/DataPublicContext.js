@@ -1,0 +1,62 @@
+import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react";
+
+const DataPublicContext = createContext();
+
+export const DataPublicContextProvider = ({ children }) => {
+  const [dataProfil, setDataProfil] = useState([]);
+  const [dataProfilStatic, setDataProfilStatic] = useState([]);
+  const [skillsPublic, setSkillsPublic] = useState([]);
+  const [callAgain, setCallAgain] = useState(false);
+
+  useEffect(() => {
+    const goFetchSkills = async () => {
+      try {
+        await axios({
+          method: "get",
+          url: `${process.env.REACT_APP_API_URI}skill/all`,
+          withCredentials: true,
+        }).then((res) => {
+          setSkillsPublic(res.data);
+          console.log(res);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    goFetchSkills();
+    const getDataProfil = async () => {
+      try {
+        await axios({
+          method: "get",
+          url: `${process.env.REACT_APP_API_URI}user/static`,
+          withCredentials: true,
+        }).then((res) => {
+          setDataProfil(res.data);
+          setDataProfilStatic(res.data);
+          // console.log(res);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDataProfil();
+  }, []);
+
+  return (
+    <DataPublicContext.Provider
+      value={{
+        dataProfil,
+        setDataProfil,
+        skillsPublic,
+        dataProfilStatic,
+        setDataProfilStatic,
+      }}
+    >
+      {children}
+    </DataPublicContext.Provider>
+  );
+};
+export const DataPublic = () => {
+  return useContext(DataPublicContext);
+};
