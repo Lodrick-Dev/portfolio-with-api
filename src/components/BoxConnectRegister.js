@@ -12,7 +12,7 @@ const BoxConnectRegister = () => {
     <StyledBoxConnectRegister onClick={(e) => e.stopPropagation()}>
       {mdpForget ? (
         <Button
-          text={"Initialisation du mot de passe"}
+          text={"Connexion"}
           icon={<MdOutlinePassword />}
           actionClick={() => setMdpForget("")}
         />

@@ -7,6 +7,7 @@ import { DataPublic } from "../context/DataPublicContext";
 import ImageProfil from "../usables/ImageProfil";
 import TitleLarge from "../usables/TitleLarge";
 import { ScrollSection } from "../context/ScrollSectionContext";
+import Spin from "./Spin";
 
 const Profil = () => {
   // const { setDataProfil } = DataPublic();

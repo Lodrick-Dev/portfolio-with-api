@@ -1,8 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { Dynamic } from "../../context/ToDynamicContext";
 
 const RoutePrivate = ({ children }) => {
-  const idUser = "";
+  const { idUser } = Dynamic();
   if (!idUser) {
     return <Navigate to="/" />;
   }
