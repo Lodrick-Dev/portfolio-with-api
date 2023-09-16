@@ -12,9 +12,10 @@ const FormRegister = () => {
   const { setIdUser } = Dynamic();
   const { setUser } = Dynamic();
   const { setAlert } = Dynamic();
+  const { alert } = Dynamic();
   const handleRegister = async (e) => {
     e.preventDefault();
-    setAlert("Inscription réussi ! Connectez-vous 😁");
+    // setAlert("Inscription réussi ! Connectez-vous 😁");
     // setAlert("Erreur lors de l'inscription 😥");
     if (
       email.current.value &&
@@ -22,27 +23,38 @@ const FormRegister = () => {
       confirmePassword.current.value &&
       codeSecret.current.value
     ) {
-      try {
-        await axios({
-          method: "post",
-          url: `${process.env.REACT_APP_API_URI}user/register`,
-          withCredentials: true,
-          data: {
-            email: email.current.value,
-            password: password.current.value,
-            code: codeSecret.current.value,
-          },
-        }).then((res) => {
-          console.log(res);
-          if (res.data.error) return alert(res.data.error);
-          console.log(res);
-          console.log("log moi");
-        });
-      } catch (error) {
-        console.log(error);
+      if (password.current.value === confirmePassword.current.value) {
+        try {
+          await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_API_URI}user/register`,
+            withCredentials: true,
+            data: {
+              email: email.current.value,
+              password: password.current.value,
+              code: codeSecret.current.value,
+            },
+          }).then((res) => {
+            console.log(res);
+            if (res.data.error)
+              return setAlert("Erreur : " + res.data.error + " 🤔");
+            if (res.data.message)
+              return setAlert(res.data.message + " Connectez-vous 😁");
+            if (res.data.errors.message)
+              return setAlert("Erreur : " + res.data.errors.message + " 🤔");
+            console.log(res);
+            console.log("log moi");
+          });
+        } catch (error) {
+          console.log(error);
+          if (error.message.includes("Network Error"))
+            return setAlert("Erreur: Serveur injoinable 😨");
+        }
+      } else {
+        return setAlert("Erreur : Mot de passes correspondent pas 😥");
       }
     } else {
-      return alert("Tous les champs sont nécéssaires");
+      return setAlert("Erreur : Tous les champs sont nécessaires");
     }
   };
   return (
@@ -55,7 +67,7 @@ const FormRegister = () => {
         ref={confirmePassword}
       />
       <input type="text" placeholder="Code attendu" ref={codeSecret} />
-      <Button text={"Inscription"} />
+      {!alert && <Button text={"Inscription"} />}
     </StyledFormRegister>
   );
 };

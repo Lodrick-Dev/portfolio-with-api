@@ -26,7 +26,10 @@ const StyledAlert = styled.div`
   /* width: 10%; */
   height: 8vh;
   background: ${({ $tocss }) =>
-    $tocss.includes("Erreur") ? "red" : "#3aa03a"};
+    $tocss.includes("Erreur") ? "#ffe6e6" : "#e6ffe6"};
+  color: ${({ $tocss }) => ($tocss.includes("Erreur") ? "red" : "#4CAF50")};
+  border-bottom: solid 3px
+    ${({ $tocss }) => ($tocss.includes("Erreur") ? "red" : "#4CAF50")};
   top: 5px;
   right: 5px;
   z-index: 20;
