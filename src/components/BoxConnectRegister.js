@@ -26,7 +26,7 @@ const BoxConnectRegister = () => {
       {connect ? (
         <FormConnect setMdpForget={setMdpForget} mdpForget={mdpForget} />
       ) : (
-        <FormRegister />
+        <FormRegister setConnect={setConnect} />
       )}
     </StyledBoxConnectRegister>
   );
