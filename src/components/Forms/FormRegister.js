@@ -11,8 +11,11 @@ const FormRegister = () => {
   const codeSecret = useRef();
   const { setIdUser } = Dynamic();
   const { setUser } = Dynamic();
+  const { setAlert } = Dynamic();
   const handleRegister = async (e) => {
     e.preventDefault();
+    setAlert("Inscription réussi ! Connectez-vous 😁");
+    // setAlert("Erreur lors de l'inscription 😥");
     if (
       email.current.value &&
       password.current.value &&

@@ -6,9 +6,19 @@ export const ToDynamicContextProvider = ({ children }) => {
   const [idUser, setIdUser] = useState(null);
   const [user, setUser] = useState(null);
   const [popChange, setPopChange] = useState(false);
+  const [alert, setAlert] = useState(null);
   return (
     <ToDynamicContext.Provider
-      value={{ popChange, setPopChange, idUser, setIdUser, user, setUser }}
+      value={{
+        popChange,
+        setPopChange,
+        idUser,
+        setIdUser,
+        user,
+        setUser,
+        setAlert,
+        alert,
+      }}
     >
       {children}
     </ToDynamicContext.Provider>
