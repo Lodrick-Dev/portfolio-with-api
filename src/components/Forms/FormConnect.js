@@ -9,12 +9,14 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
   const [password, setPassword] = useState(null);
   const [redirection, setRedirection] = useState(null);
   const { setAlert } = Dynamic();
+  const { setSpin } = Dynamic();
   let compt = 5;
   const handleConnect = (e) => {
     e.preventDefault();
     if (mdpForget) {
       alert("init mdp");
     } else {
+      setSpin(true);
       connexionUser(email, password);
     }
   };
@@ -32,11 +34,13 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
         },
       }).then((res) => {
         console.log(res);
-        return; //
+        setSpin(false);
+        // return; //
         if (res.data.error) return setAlert(`Erreur : ${res.data.error}`);
         if (res.data.errors)
           return setAlert(`Erreur : ${res.data.errors.fatal}`);
         if (res.data.redirection) {
+          setSpin(true);
           console.log(res.data.redirection);
           setRedirection(res.data.redirection);
           console.log(redirection);
@@ -47,6 +51,7 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
             if (compt < 0) {
               clearInterval(intervallCompteur);
               console.log("compteur < à 0");
+              setSpin(false);
               compt = 5;
               setRedirection(null);
               window.location.href = "https://www.google.com";

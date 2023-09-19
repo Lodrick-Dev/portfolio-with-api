@@ -9,6 +9,7 @@ export const ToDynamicContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [popChange, setPopChange] = useState(false);
   const [alert, setAlert] = useState(null);
+  const [spin, setSpin] = useState(false);
   useEffect(() => {
     const checkIpFirstTime = async () => {
       try {
@@ -32,6 +33,8 @@ export const ToDynamicContextProvider = ({ children }) => {
   return (
     <ToDynamicContext.Provider
       value={{
+        spin,
+        setSpin,
         popChange,
         setPopChange,
         idUser,

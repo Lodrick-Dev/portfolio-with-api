@@ -21,11 +21,12 @@ const StyledSpin = styled.div`
   padding: 0;
   height: 100%;
   width: 100%;
-  background: #262626;
+  background: #262626d4;
   display: flex;
   justify-content: center;
   align-items: center;
   .ring {
+    font-size: 5em;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -38,7 +39,7 @@ const StyledSpin = styled.div`
     text-align: center;
     line-height: 150px;
     font-family: sans-serif;
-    font-size: 20px;
+    /* font-size: 20px; */
     color: #fff000;
     letter-spacing: 4px;
     text-transform: uppercase;
