@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import Button from "../../usables/Button";
 import axios from "axios";
@@ -7,7 +7,6 @@ import { Dynamic } from "../../context/ToDynamicContext";
 const FormConnect = ({ mdpForget, setMdpForget }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [comptor, setComptor] = useState(0);
   const [redirection, setRedirection] = useState(null);
   const { setAlert } = Dynamic();
   let compt = 5;
@@ -39,51 +38,25 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
         if (res.data.redirection) {
           console.log(res.data.redirection);
           setRedirection(res.data.redirection);
-          // setAlert("Erreur : Bloqué ! Vous êtes rediriger dans " + compt);
           console.log(redirection);
           const intervallCompteur = setInterval(() => {
             console.log("je suis dans l'interval");
             compt--;
-            console.log(compt);
-            setComptor(compt);
             setAlert("Erreur : Bloqué ! Vous êtes rediriger dans " + compt);
             if (compt < 0) {
               clearInterval(intervallCompteur);
               console.log("compteur < à 0");
               compt = 5;
-              setComptor(compt);
               setRedirection(null);
               window.location.href = "https://www.google.com";
             }
           }, 1000);
-          // setTimeout(() => {
-          // }, 3000);
         }
       });
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    console.log("je dans le use");
-    if (redirection === "ok") {
-      console.log("je suis dans le if");
-      // compt = 5;
-      // const intervallCompteur = setInterval(() => {
-      //   console.log("je suis dans l'interval");
-      //   compt--;
-      //   console.log(compt);
-      // setAlert("Erreur : Bloqué ! Vous êtes rediriger dans " + comptor);
-      //   if (compt < 0) {
-      //     clearInterval(intervallCompteur);
-      //     console.log("compteur < à 0");
-      //     compt = 5;
-      //     setRedirection(null);
-      //   }
-      // }, 1000);
-    }
-  }, [redirection]);
 
   return (
     <StyledFormConnect onSubmit={(e) => handleConnect(e)}>
