@@ -10,10 +10,12 @@ const Alert = () => {
     const timeMort = () => {
       setTimeout(() => {
         setAlert("");
-      }, 8000);
+      }, 5000);
     };
     if (alert) {
       timeMort();
+    } else {
+      clearTimeout(timeMort);
     }
   }, [alert]);
 
@@ -40,9 +42,9 @@ const StyledAlert = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.2em;
-  animation: showMe 8s ease-in-out;
+  animation: showMe 5s ease-in-out;
   opacity: 0;
-  transition: opacity 2s;
+  transition: opacity 0.1s;
   visibility: hidden;
   @keyframes showMe {
     0% {

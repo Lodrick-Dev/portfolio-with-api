@@ -1,20 +1,104 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import Button from "../../usables/Button";
+import axios from "axios";
+import { Dynamic } from "../../context/ToDynamicContext";
 
 const FormConnect = ({ mdpForget, setMdpForget }) => {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [comptor, setComptor] = useState(0);
+  const [redirection, setRedirection] = useState(null);
+  const { setAlert } = Dynamic();
+  let compt = 5;
   const handleConnect = (e) => {
     e.preventDefault();
     if (mdpForget) {
       alert("init mdp");
     } else {
-      alert("hello");
+      connexionUser(email, password);
     }
   };
+  const connexionUser = async (email, password) => {
+    // if (!email || !password)
+    //   return setAlert("Erreur :  Tous les champs sont nécessaires 😥");
+    try {
+      await axios({
+        method: "post",
+        url: `${process.env.REACT_APP_API_URI}user/login`,
+        withCredentials: true,
+        data: {
+          email,
+          password,
+        },
+      }).then((res) => {
+        console.log(res);
+        if (res.data.error) return setAlert(`Erreur : ${res.data.error}`);
+        if (res.data.errors)
+          return setAlert(`Erreur : ${res.data.errors.fatal}`);
+        if (res.data.redirection) {
+          console.log(res.data.redirection);
+          setRedirection(res.data.redirection);
+          // setAlert("Erreur : Bloqué ! Vous êtes rediriger dans " + compt);
+          console.log(redirection);
+          const intervallCompteur = setInterval(() => {
+            console.log("je suis dans l'interval");
+            compt--;
+            console.log(compt);
+            setComptor(compt);
+            setAlert("Erreur : Bloqué ! Vous êtes rediriger dans " + compt);
+            if (compt < 0) {
+              clearInterval(intervallCompteur);
+              console.log("compteur < à 0");
+              compt = 5;
+              setComptor(compt);
+              setRedirection(null);
+              window.location.href = "https://www.google.com";
+            }
+          }, 1000);
+          // setTimeout(() => {
+          // }, 3000);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("je dans le use");
+    if (redirection === "ok") {
+      console.log("je suis dans le if");
+      // compt = 5;
+      // const intervallCompteur = setInterval(() => {
+      //   console.log("je suis dans l'interval");
+      //   compt--;
+      //   console.log(compt);
+      // setAlert("Erreur : Bloqué ! Vous êtes rediriger dans " + comptor);
+      //   if (compt < 0) {
+      //     clearInterval(intervallCompteur);
+      //     console.log("compteur < à 0");
+      //     compt = 5;
+      //     setRedirection(null);
+      //   }
+      // }, 1000);
+    }
+  }, [redirection]);
+
   return (
     <StyledFormConnect onSubmit={(e) => handleConnect(e)}>
-      <input type="email" placeholder="Email*" />
-      {!mdpForget && <input type="password" placeholder="Mot de passe*" />}
+      <input
+        type="email"
+        placeholder="Email*"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      {!mdpForget && (
+        <input
+          type="password"
+          placeholder="Mot de passe*"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      )}
       <Button text={mdpForget ? "Initialisation" : "Connexion"} />
       {!mdpForget ? (
         <span onClick={() => setMdpForget("value")}>Mot de passe oublié</span>
