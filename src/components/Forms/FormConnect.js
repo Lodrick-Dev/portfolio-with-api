@@ -32,6 +32,7 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
         },
       }).then((res) => {
         console.log(res);
+        return; //
         if (res.data.error) return setAlert(`Erreur : ${res.data.error}`);
         if (res.data.errors)
           return setAlert(`Erreur : ${res.data.errors.fatal}`);
