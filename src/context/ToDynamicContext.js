@@ -16,9 +16,12 @@ export const ToDynamicContextProvider = ({ children }) => {
         await axios({
           method: "get",
           url: `${process.env.REACT_APP_API_URI}jwtid`,
-          withCredentails: true,
+          withCredentials: true,
         }).then((res) => {
           console.log(res);
+          if (res.data._id) {
+            setUser(res.data);
+          }
           if (res.data.redirection) {
             return (window.location.href = "https://www.google.com");
           }
@@ -26,6 +29,8 @@ export const ToDynamicContextProvider = ({ children }) => {
       } catch (error) {
         console.log(error);
       }
+
+      //si idUse alors navigue
     };
     checkIpFirstTime();
   }, [idUser]);

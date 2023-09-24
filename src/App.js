@@ -8,15 +8,10 @@ import { Dynamic } from "./context/ToDynamicContext";
 import PopUp from "./usables/PopUp";
 import Alert from "./components/Alert";
 import Spin from "./components/Spin";
-import { useEffect } from "react";
 function App() {
   const { popChange } = Dynamic();
   const { alert } = Dynamic();
   const { spin } = Dynamic();
-  const { setSpin } = Dynamic();
-  // useEffect(() => {
-  //   setSpin(false);
-  // }, []);
 
   return (
     <>

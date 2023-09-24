@@ -38,7 +38,7 @@ const FormRegister = ({ setConnect }) => {
               code: codeSecret,
             },
           }).then((res) => {
-            console.log(res);
+            // console.log(res);
             if (res.data.error)
               return setAlert("Erreur : " + res.data.error + " 🤔");
             if (res.data.message) {
@@ -51,8 +51,8 @@ const FormRegister = ({ setConnect }) => {
             }
             if (res.data.errors.message)
               return setAlert("Erreur : " + res.data.errors.message + " 🤔");
-            console.log(res);
-            console.log("log moi");
+            // console.log(res);
+            // console.log("log moi");
           });
         } catch (error) {
           console.log(error);

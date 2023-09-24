@@ -2,12 +2,14 @@ import React from "react";
 import { styled } from "styled-components";
 import { Dynamic } from "../context/ToDynamicContext";
 import BoxConnectRegister from "../components/BoxConnectRegister";
+import BoxNavDeconnect from "../components/BoxNavDeconnect";
 
 const PopUp = () => {
   const { setPopChange } = Dynamic();
+  const { idUser } = Dynamic();
   return (
     <StyledPopUp onClick={() => setPopChange(false)}>
-      <BoxConnectRegister />
+      {idUser ? <BoxNavDeconnect /> : <BoxConnectRegister />}
     </StyledPopUp>
   );
 };

@@ -3,13 +3,17 @@ import { styled } from "styled-components";
 import Button from "../../usables/Button";
 import axios from "axios";
 import { Dynamic } from "../../context/ToDynamicContext";
+import { useNavigate } from "react-router-dom";
 
 const FormConnect = ({ mdpForget, setMdpForget }) => {
+  const { setIdUser } = Dynamic();
+  const { setPopChange } = Dynamic();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [redirection, setRedirection] = useState(null);
   const { setAlert } = Dynamic();
   const { setSpin } = Dynamic();
+  const navigue = useNavigate();
   let compt = 5;
   const handleConnect = (e) => {
     e.preventDefault();
@@ -35,6 +39,12 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
       }).then((res) => {
         console.log(res);
         setSpin(false);
+        if (res.data.user) {
+          setPopChange(false);
+          setIdUser(res.data.user);
+          navigue("/admin");
+          return;
+        }
         // return; //
         if (res.data.error) return setAlert(`Erreur : ${res.data.error}`);
         if (res.data.errors)
@@ -45,12 +55,12 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
           setRedirection(res.data.redirection);
           console.log(redirection);
           const intervallCompteur = setInterval(() => {
-            console.log("je suis dans l'interval");
+            // console.log("je suis dans l'interval");
             compt--;
             setAlert("Erreur : Bloqué ! Vous êtes rediriger dans " + compt);
             if (compt < 0) {
               clearInterval(intervallCompteur);
-              console.log("compteur < à 0");
+              // console.log("compteur < à 0");
               setSpin(false);
               compt = 5;
               setRedirection(null);
