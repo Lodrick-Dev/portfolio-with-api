@@ -6,14 +6,9 @@ import { Dynamic } from "../context/ToDynamicContext";
 const TitleLarge = ({ text }) => {
   const { location } = ScrollSection();
   const { setPopChange } = Dynamic();
-  const idUser = "";
   const admin = () => {
     // console.log(location);
-    if (idUser) {
-      alert("Déconnexion");
-    } else {
-      if (location.pathname === "/") setPopChange(true);
-    }
+    if (location.pathname === "/") setPopChange(true);
   };
   return (
     //le $ devant location car StyledComponent veut le renvoye au dom
