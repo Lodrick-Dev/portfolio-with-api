@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Skills from "../usables/Skills";
 import styled from "styled-components";
 import Description from "../usables/Description";
@@ -8,29 +8,8 @@ import TitleLarge from "../usables/TitleLarge";
 import { ScrollSection } from "../context/ScrollSectionContext";
 
 const Profil = () => {
-  // const { setDataProfil } = DataPublic();
-  // const { setDataProfilStatic } = DataPublic();
   const { dataProfil } = DataPublic();
   const { location } = ScrollSection();
-  // console.log(location.pathname);
-  // useEffect(() => {
-  //   const getDataProfil = async () => {
-  //     try {
-  //       await axios({
-  //         method: "get",
-  //         url: `${process.env.REACT_APP_API_URI}user/static`,
-  //         withCredentials: true,
-  //       }).then((res) => {
-  //         setDataProfil(res.data);
-  //         setDataProfilStatic(res.data);
-  //         console.log(res);
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getDataProfil();
-  // }, []);
 
   return (
     <StyledProfil id="profil-composant" $location={location.pathname}>

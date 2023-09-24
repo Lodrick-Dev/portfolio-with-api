@@ -3,10 +3,12 @@ import styled from "styled-components";
 import TitleMedium from "../usables/TitleMedium";
 import TitleLittle from "../usables/TitleLittle";
 import { Dynamic } from "../context/ToDynamicContext";
+import axios from "axios";
 
 const BoxNavDeconnect = () => {
   const { navigue } = Dynamic();
   const { setPopChange } = Dynamic();
+  const { setIdUser } = Dynamic();
   const goAdmin = () => {
     setPopChange(false);
     navigue("/admin");
@@ -18,7 +20,18 @@ const BoxNavDeconnect = () => {
       )
     ) {
       //ici déconnexion
-      alert("déconnection");
+      try {
+        await axios({
+          method: "get",
+          url: `${process.env.REACT_APP_API_URI}user/logout`,
+          withCredentials: true,
+        }).then(() => {
+          setPopChange(false);
+          setIdUser(null);
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (

@@ -7,7 +7,7 @@ const Skills = () => {
   const { skillsPublic } = DataPublic();
   return (
     <StyledSkills>
-      <TitleMedium text={"Langage/Techno/Cms"} />
+      <TitleMedium text={"Bon savoir"} />
       {skillsPublic &&
         skillsPublic.map((skill) => <li key={skill._id}>{skill.name}</li>)}
     </StyledSkills>
