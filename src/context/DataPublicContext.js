@@ -41,7 +41,7 @@ export const DataPublicContextProvider = ({ children }) => {
       }
     };
     getDataProfil();
-  }, []);
+  }, [callAgain]);
 
   return (
     <DataPublicContext.Provider
@@ -51,6 +51,8 @@ export const DataPublicContextProvider = ({ children }) => {
         skillsPublic,
         dataProfilStatic,
         setDataProfilStatic,
+        callAgain,
+        setCallAgain,
       }}
     >
       {children}

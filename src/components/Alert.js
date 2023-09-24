@@ -24,7 +24,7 @@ const Alert = () => {
 
 export default Alert;
 const StyledAlert = styled.div`
-  position: absolute;
+  position: fixed;
   /* width: 10%; */
   height: 8vh;
   background: ${({ $tocss }) =>
