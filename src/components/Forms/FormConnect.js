@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import Button from "../../usables/Button";
 import axios from "axios";
 import { Dynamic } from "../../context/ToDynamicContext";
-import { useNavigate } from "react-router-dom";
 
 const FormConnect = ({ mdpForget, setMdpForget }) => {
   const { setIdUser } = Dynamic();
@@ -13,7 +12,7 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
   const [redirection, setRedirection] = useState(null);
   const { setAlert } = Dynamic();
   const { setSpin } = Dynamic();
-  const navigue = useNavigate();
+  const { navigue } = Dynamic();
   let compt = 5;
   const handleConnect = (e) => {
     e.preventDefault();

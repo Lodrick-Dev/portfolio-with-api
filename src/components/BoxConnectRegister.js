@@ -38,7 +38,6 @@ const StyledBoxConnectRegister = styled.div`
   width: 40%;
   border-radius: 10px;
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   align-items: center;
   background: greenyellow;

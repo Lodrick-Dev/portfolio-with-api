@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ToDynamicContext = createContext();
 
@@ -10,6 +11,7 @@ export const ToDynamicContextProvider = ({ children }) => {
   const [popChange, setPopChange] = useState(false);
   const [alert, setAlert] = useState(null);
   const [spin, setSpin] = useState(false);
+  const navigue = useNavigate();
   useEffect(() => {
     const checkIpFirstTime = async () => {
       try {
@@ -21,6 +23,7 @@ export const ToDynamicContextProvider = ({ children }) => {
           console.log(res);
           if (res.data._id) {
             setUser(res.data);
+            setIdUser(res.data._id);
           }
           if (res.data.redirection) {
             return (window.location.href = "https://www.google.com");
@@ -48,6 +51,7 @@ export const ToDynamicContextProvider = ({ children }) => {
         setUser,
         setAlert,
         alert,
+        navigue,
       }}
     >
       {children}
