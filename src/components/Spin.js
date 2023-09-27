@@ -15,8 +15,8 @@ const Spin = () => {
 export default Spin;
 
 const StyledSpin = styled.div`
-  position: absolute;
-  z-index: 15;
+  position: fixed;
+  z-index: 25;
   margin: 0;
   padding: 0;
   height: 100%;

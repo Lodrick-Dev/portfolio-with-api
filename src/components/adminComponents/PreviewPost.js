@@ -34,6 +34,7 @@ const PreviewPost = ({ skillsSelect }) => {
     <StyledPreviewPost>
       <strong>Prévisualisation</strong>
       <ImagePreviewPost previewImg={previewImg} />
+      <img src="https://www.googleapis.com/s2/favicons?domain=https://www.google.com" />
       <h1>{postPreview[0]}</h1>
       <span>{postPreview[1]}</span>
       <p>{postPreview[2]}</p>

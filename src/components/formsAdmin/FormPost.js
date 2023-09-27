@@ -6,7 +6,10 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { SlideInSection } from "../../context/SlideInSectionContext";
 import InputChangeImg from "../../usables/InputChangeImg";
 import CheckBox from "../adminComponents/CheckBox";
+import { Dynamic } from "../../context/ToDynamicContext";
+import axios from "axios";
 const FormPost = ({ setSkillsSelect, skillsSelect }) => {
+  const { idUser } = Dynamic();
   const { setFormPost } = SlideInSection(); //to preview post
   const { setPostPreview } = SlideInSection(); //to preview post
   const { postPreview } = SlideInSection(); //to preview post
@@ -16,21 +19,46 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
   const imgSelectedCurrent = useRef();
+  const { setAlert } = Dynamic();
+  const { setSpin } = Dynamic();
+  const { spin } = Dynamic();
 
   //action fonction
   const changeImgCurrent = () => {
     imgSelectedCurrent.current.click();
   };
 
-  const subForm = (e) => {
+  const subForm = async (e) => {
     e.preventDefault();
+    // setSpin(true);
     // alert("ici");
     console.log(postPreview);
     console.log(skillsSelect);
     if (name && link && description && skillsSelect.length > 0) {
-      return alert("C'est bon");
+      setSpin(true);
+      await axios({
+        method: "post",
+        url: `${process.env.REACT_APP_API_URI}contents/add`,
+        withCredentials: true,
+        data: {
+          posterid: idUser,
+          projet: name,
+          content: description,
+          lien: link,
+          skills: skillsSelect,
+        },
+      }).then((res) => {
+        console.log(res);
+        setSpin(false);
+        if (res.data.error) return setAlert(res.data.error);
+        if (res.data.message) {
+          //on doit effacé les chmaps remettre a zéro
+          //On n'a pas encore traité l'envoi d'image
+          return setAlert(res.data.message);
+        }
+      });
     } else {
-      return alert("Les champs nécéssaires doivent être rempli");
+      return setAlert("Erreur : Les champs nécéssaires doivent être rempli");
     }
   };
 
