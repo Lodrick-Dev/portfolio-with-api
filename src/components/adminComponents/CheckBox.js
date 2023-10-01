@@ -2,13 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { DataPublic } from "../../context/DataPublicContext";
 import { styled } from "styled-components";
 import { Dynamic } from "../../context/ToDynamicContext";
-import { ScrollSection } from "../../context/ScrollSectionContext";
 
 // const CheckBox = ({ setSkillsSelect, skillsSelect }) => {
 const CheckBox = () => {
   const { skillsSelect, setSkillsSelect } = Dynamic();
   const { skillsPublic, callAgain } = DataPublic();
-  const { location } = ScrollSection();
   const listCheckBox = useRef([]);
   const checkedSkill = (e, id) => {
     const checkBox = listCheckBox.current[id];

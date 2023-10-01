@@ -11,8 +11,7 @@ const FormSkills = () => {
   const [label, setLabel] = useState("");
   const [name, setName] = useState("");
   const { setAlert } = Dynamic();
-  const { callAgain } = DataPublic();
-  const { setCallAgain } = DataPublic();
+  const { callAfter, setCallAfter } = DataPublic();
   const addSkill = async (e) => {
     e.preventDefault();
     if (!label || !name)
@@ -34,7 +33,7 @@ const FormSkills = () => {
           setLabel("");
           setName("");
           setAlert(res.data.message);
-          setCallAgain(!callAgain);
+          setCallAfter(!callAfter);
         }
       });
     } catch (error) {

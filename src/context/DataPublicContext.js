@@ -10,7 +10,7 @@ export const DataPublicContextProvider = ({ children }) => {
   const [skillsPublic, setSkillsPublic] = useState([]);
   const [listProjets, setListProjets] = useState([]);
   const [callAgain, setCallAgain] = useState(false);
-  const { location } = Dynamic();
+  const [callAfter, setCallAfter] = useState(false);
 
   useEffect(() => {
     const goFetchSkills = async () => {
@@ -59,7 +59,7 @@ export const DataPublicContextProvider = ({ children }) => {
       }
     };
     getAllProjets();
-  }, [callAgain]);
+  }, [callAgain, callAfter]);
 
   return (
     <DataPublicContext.Provider
@@ -73,6 +73,8 @@ export const DataPublicContextProvider = ({ children }) => {
         setListProjets,
         callAgain,
         setCallAgain,
+        callAfter,
+        setCallAfter,
       }}
     >
       {children}

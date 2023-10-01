@@ -20,36 +20,51 @@ const ListsProjets = () => {
   };
   return (
     <StyledListsProjets>
+      <span>Nombre de projet : {listProjets.length}</span>
       {projetSelected && (
         <OneProjet
           projetSelected={projetSelected}
           setProjetSelected={setProjetSelected}
         />
       )}
-      {listProjets ? (
-        listProjets.map((projet) => (
-          <li key={projet._id} onClick={() => projetSelect(projet._id)}>
-            {projet.projet}
-          </li>
-        ))
-      ) : (
-        <li className="not-projet">Aucun projet</li>
-      )}
+      <ul>
+        {listProjets ? (
+          listProjets.map((projet) => (
+            <li
+              key={projet._id}
+              onClick={() => projetSelect(projet._id)}
+              onDoubleClick={() => alert("double click")}
+            >
+              {projet.projet}
+            </li>
+          ))
+        ) : (
+          <li className="not-projet">Aucun projet</li>
+        )}
+      </ul>
     </StyledListsProjets>
   );
 };
 
 export default ListsProjets;
 
-const StyledListsProjets = styled.ul`
+const StyledListsProjets = styled.div`
   background: pink;
   margin: 10px auto;
   padding: 5px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  li {
+  span {
+    background: red;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  ul {
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    /* align-items: center; */
+  }
+  ul > li {
     font-size: 1.5em;
     margin: 10px;
     background: greenyellow;

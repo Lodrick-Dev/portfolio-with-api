@@ -9,8 +9,7 @@ const Skills = () => {
   const { skillsPublic } = DataPublic();
   const { setAlert } = Dynamic();
   const { idUser } = Dynamic();
-  const { callAgain } = DataPublic();
-  const { setCallAgain } = DataPublic();
+  const { callAfter, setCallAfter } = DataPublic();
   const deleteSkill = async (id, name) => {
     if (
       window.confirm(
@@ -27,7 +26,7 @@ const Skills = () => {
           if (res.data.error) return setAlert(res.data.error);
           if (res.data.message) {
             setAlert(res.data.message);
-            setCallAgain(!callAgain);
+            setCallAfter(!callAfter);
           }
         });
       } catch (error) {
