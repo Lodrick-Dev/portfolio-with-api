@@ -18,7 +18,7 @@ const CheckBox = () => {
     }
   };
   const addSkillToProjet = (name) => {
-    // console.log(name);
+    console.log(skillsSelect);
     if (!skillsSelect.includes(name)) {
       setSkillsSelect((prev) => [...prev, name]);
     } else {
@@ -33,7 +33,7 @@ const CheckBox = () => {
       const lists = document.querySelectorAll(".input-check-box");
       lists.forEach((el) => {
         el.checked = false;
-        console.log(el.parentNode);
+        // console.log(el.parentNode);
         el.parentNode.classList.remove("box-checked");
       });
     };

@@ -6,6 +6,7 @@ import { Dynamic } from "../../context/ToDynamicContext";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
 import { DataPublic } from "../../context/DataPublicContext";
+import Image from "../../usables/Image";
 
 const OneProjet = ({ projetSelected, setProjetSelected }) => {
   const { setSkillsSelect } = Dynamic();
@@ -13,7 +14,7 @@ const OneProjet = ({ projetSelected, setProjetSelected }) => {
   const { setCallAfter, callAfter } = DataPublic();
   const initialiseToClosePop = () => {
     setProjetSelected(null);
-    setSkillsSelect(null);
+    setSkillsSelect([]);
   };
   const deleteSelect = async (id, name) => {
     if (window.confirm(`Ok pour supprimer ${name} ?`)) {
@@ -29,7 +30,7 @@ const OneProjet = ({ projetSelected, setProjetSelected }) => {
               return setAlert(res.data.message);
             } else {
               setProjetSelected(null);
-              setSkillsSelect(null);
+              setSkillsSelect([]);
               setCallAfter(!callAfter);
               return setAlert(res.data.message);
             }
@@ -53,6 +54,7 @@ const OneProjet = ({ projetSelected, setProjetSelected }) => {
         <p>{projetSelected.content}</p>
         <a href={projetSelected.lien}>Le lien : {projetSelected.lien}</a>
         <ListsSkillsToPost />
+        <Image img={projetSelected.image} legend={projetSelected.projet} />
       </div>
     </StyledOneProjet>
   );

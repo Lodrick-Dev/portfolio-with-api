@@ -4,13 +4,27 @@ import { SlideInSection } from "../../context/SlideInSectionContext";
 import Resizer from "react-image-file-resizer";
 import ImagePreviewPost from "../../usables/ImagePreviewPost";
 import ListsSkillsToPost from "../../usables/ListsSkillsToPost";
+import { Dynamic } from "../../context/ToDynamicContext";
 
-const PreviewPost = ({ skillsSelect }) => {
-  const { postPreview } = SlideInSection();
+const PreviewPost = () => {
+  const {
+    postPreview,
+    setPostPreview,
+    imgPostPreview,
+    setImgPostPreview,
+    setFormPost,
+  } = SlideInSection();
+  const { skillsSelect, setSkillsSelect } = Dynamic();
   const [previewImg, setPreviewImg] = useState("");
-  const { imgPostPreview } = SlideInSection();
   // const imgDefault = "./upload/post/defaultProfil.png";
   // console.log(imgPostPreview);
+
+  const cancelPreview = () => {
+    // setSkillsSelect([]);
+    setPostPreview([]);
+    setFormPost(false);
+    setImgPostPreview(null);
+  };
   useEffect(() => {
     console.log(skillsSelect);
     //resize l'image, 100 c'est la meilleire qualité, 0 pour la rotation
@@ -37,7 +51,10 @@ const PreviewPost = ({ skillsSelect }) => {
       <h1>{postPreview[0]}</h1>
       <span>{postPreview[1]}</span>
       <p>{postPreview[2]}</p>
-      {skillsSelect && <ListsSkillsToPost skillsSelect={skillsSelect} />}
+      {skillsSelect && <ListsSkillsToPost />}
+      <span id="to-cancel" onClick={() => cancelPreview()}>
+        Retour
+      </span>
     </StyledPreviewPost>
   );
 };
@@ -62,6 +79,16 @@ const StyledPreviewPost = styled.div`
     top: 5px;
     right: 5px;
     text-decoration: underline;
+  }
+  #to-cancel {
+    position: absolute;
+    background: green;
+    width: 10%;
+    height: 20px;
+    bottom: 15px;
+    left: 5px;
+    text-decoration: underline;
+    cursor: pointer;
   }
   .prev-skills {
     width: 50%;

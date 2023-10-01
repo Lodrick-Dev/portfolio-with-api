@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 
 const ImagePreviewPost = ({ previewImg }) => {
-  const imgDefault = "./upload/post/defaultProfil.png";
+  const imgDefault = "./uploads/posts/defaultProfil.png";
   return (
     <StyledImagePreview
       src={previewImg ? previewImg : imgDefault}
