@@ -7,6 +7,7 @@ export const DataPublicContextProvider = ({ children }) => {
   const [dataProfil, setDataProfil] = useState([]);
   const [dataProfilStatic, setDataProfilStatic] = useState([]);
   const [skillsPublic, setSkillsPublic] = useState([]);
+  const [listProjets, setListProjets] = useState([]);
   const [callAgain, setCallAgain] = useState(false);
 
   useEffect(() => {
@@ -41,6 +42,21 @@ export const DataPublicContextProvider = ({ children }) => {
       }
     };
     getDataProfil();
+    const getAllProjets = async () => {
+      try {
+        await axios({
+          method: "get",
+          url: `${process.env.REACT_APP_API_URI}contents/all`,
+          withCredentials: true,
+        }).then((res) => {
+          console.log(res);
+          setListProjets(res.data);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllProjets();
   }, [callAgain]);
 
   return (
@@ -51,6 +67,8 @@ export const DataPublicContextProvider = ({ children }) => {
         skillsPublic,
         dataProfilStatic,
         setDataProfilStatic,
+        listProjets,
+        setListProjets,
         callAgain,
         setCallAgain,
       }}
