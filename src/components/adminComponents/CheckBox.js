@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { DataPublic } from "../../context/DataPublicContext";
 import { styled } from "styled-components";
+import { Dynamic } from "../../context/ToDynamicContext";
 
-const CheckBox = ({ setSkillsSelect, skillsSelect }) => {
+// const CheckBox = ({ setSkillsSelect, skillsSelect }) => {
+const CheckBox = () => {
+  const { skillsSelect, setSkillsSelect } = Dynamic();
   const { skillsPublic } = DataPublic();
   const listCheckBox = useRef([]);
-  //   const [SkillsSelect, setSkillsSelect] = useState([]);
   const checkedSkill = (e, id) => {
     const checkBox = listCheckBox.current[id];
     if (checkBox) {
@@ -23,6 +25,10 @@ const CheckBox = ({ setSkillsSelect, skillsSelect }) => {
       setSkillsSelect((prev) => prev.filter((skill) => skill !== name));
     }
   };
+
+  //pour vérifié si les checkbox sont checked toujours apres envoi
+  //du formulaire
+  useEffect(() => {}, [skillsSelect]);
 
   return (
     <StyledCheckBox>

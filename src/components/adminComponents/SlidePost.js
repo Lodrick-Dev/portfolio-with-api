@@ -3,16 +3,21 @@ import { styled } from "styled-components";
 import ListsProjets from "../../usables/ListsProjets";
 import PreviewPost from "./PreviewPost";
 import { SlideInSection } from "../../context/SlideInSectionContext";
+import { Dynamic } from "../../context/ToDynamicContext";
 
-const SlidePost = ({ skillsSelect }) => {
+const SlidePost = ({ setSkillsSelect }) => {
   const { formPost } = SlideInSection();
+  const { skillsSelect } = Dynamic();
 
   return (
     <StyledSlidePost>
       {formPost ? (
         <PreviewPost skillsSelect={skillsSelect} />
       ) : (
-        <ListsProjets />
+        <ListsProjets
+          // skillsSelect={skillsSelect}
+          setSkillsSelect={setSkillsSelect}
+        />
       )}
     </StyledSlidePost>
   );

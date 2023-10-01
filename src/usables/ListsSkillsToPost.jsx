@@ -1,12 +1,13 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Dynamic } from "../context/ToDynamicContext";
 
-const ListsSkillsToPost = ({ skillsSelect }) => {
+const ListsSkillsToPost = () => {
+  const { skillsSelect } = Dynamic();
   return (
     <StyledListsSkillsToPost>
-      {skillsSelect.map((skill, index) => (
-        <span key={index}>{skill}</span>
-      ))}
+      {skillsSelect &&
+        skillsSelect.map((skill, index) => <span key={index}>{skill}</span>)}
     </StyledListsSkillsToPost>
   );
 };
@@ -16,5 +17,12 @@ export default ListsSkillsToPost;
 const StyledListsSkillsToPost = styled.div`
   width: 50%;
   display: flex;
-  background: yellow;
+  justify-content: center;
+  justify-items: center;
+  span {
+    text-align: center;
+    background: yellow;
+    margin: 10px;
+    padding: 5px;
+  }
 `;

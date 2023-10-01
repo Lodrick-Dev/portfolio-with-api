@@ -53,6 +53,11 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
         if (res.data.error) return setAlert(res.data.error);
         if (res.data.message) {
           //on doit effacé les chmaps remettre a zéro
+          setName("");
+          setDescription("");
+          setLink("");
+          setSkillsSelect([]);
+          setImgPostPreview(null);
           //On n'a pas encore traité l'envoi d'image
           return setAlert(res.data.message);
         }
@@ -87,18 +92,21 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
       <input
         type="text"
         placeholder="Nom*"
+        value={name ? name : ""}
         onChange={(e) => setName(e.target.value)}
       />
       <input
         type="text"
         placeholder="Lien*"
+        value={link ? link : ""}
         onChange={(e) => setLink(e.target.value)}
       />
       <textarea
         placeholder="Description*"
+        value={description ? description : ""}
         onChange={(e) => setDescription(e.target.value)}
       ></textarea>
-      <CheckBox setSkillsSelect={setSkillsSelect} skillsSelect={skillsSelect} />
+      <CheckBox />
       {toChangeImg && (
         <InputChangeImg
           actionClick={() => changeImgCurrent()}

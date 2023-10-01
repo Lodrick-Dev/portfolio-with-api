@@ -11,6 +11,7 @@ export const ToDynamicContextProvider = ({ children }) => {
   const [popChange, setPopChange] = useState(false);
   const [alert, setAlert] = useState(null);
   const [spin, setSpin] = useState(false);
+  const [skillsSelect, setSkillsSelect] = useState([]);
   const navigue = useNavigate();
   useEffect(() => {
     const checkIpFirstTime = async () => {
@@ -41,6 +42,8 @@ export const ToDynamicContextProvider = ({ children }) => {
   return (
     <ToDynamicContext.Provider
       value={{
+        skillsSelect,
+        setSkillsSelect,
         spin,
         setSpin,
         popChange,
