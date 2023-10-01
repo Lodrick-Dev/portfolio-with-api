@@ -31,15 +31,21 @@ const CheckBox = () => {
   //pour vérifié si les checkbox sont checked toujours apres envoi
   //du formulaire
   useEffect(() => {
-    // const initClass = () => {
-    //   const lists = document.querySelectorAll(".input-check-box");
-    //   lists.forEach((el) => {
-    //     el.checked = false;
-    //     console.log(el.parentNode);
-    //     el.parentNode.classList.remove("box-checked");
-    //   });
-    // };
-    // initClass();
+    const initClass = () => {
+      const lists = document.querySelectorAll(".input-check-box");
+      lists.forEach((el) => {
+        el.checked = false;
+        console.log(el.parentNode);
+        el.parentNode.classList.remove("box-checked");
+      });
+    };
+    if (skillsSelect.length < 1) {
+      initClass();
+      console.log("on vide");
+    } else {
+      console.log(skillsSelect);
+      console.log("on vide pas");
+    }
   }, [callAgain]);
 
   return (

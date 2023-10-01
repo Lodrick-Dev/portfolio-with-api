@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { Dynamic } from "./ToDynamicContext";
 
 const DataPublicContext = createContext();
 
@@ -9,6 +10,7 @@ export const DataPublicContextProvider = ({ children }) => {
   const [skillsPublic, setSkillsPublic] = useState([]);
   const [listProjets, setListProjets] = useState([]);
   const [callAgain, setCallAgain] = useState(false);
+  const { location } = Dynamic();
 
   useEffect(() => {
     const goFetchSkills = async () => {
