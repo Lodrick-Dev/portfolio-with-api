@@ -1,11 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const ScrollSectionContext = createContext();
 
 export const ScrollSectionContextProvider = ({ children }) => {
-  const location = useLocation();
-  const navigue = useNavigate();
+  // const location = useLocation();
+  // const navigue = useNavigate();
   const [menuActif, setMenuActif] = useState("profil-composant");
   const scrollSmooth = (idComposant) => {
     setMenuActif(idComposant);
@@ -17,9 +16,7 @@ export const ScrollSectionContextProvider = ({ children }) => {
   };
 
   return (
-    <ScrollSectionContext.Provider
-      value={{ scrollSmooth, location, navigue, menuActif }}
-    >
+    <ScrollSectionContext.Provider value={{ scrollSmooth, menuActif }}>
       {children}
     </ScrollSectionContext.Provider>
   );

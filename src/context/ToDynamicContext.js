@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ToDynamicContext = createContext();
 
 export const ToDynamicContextProvider = ({ children }) => {
+  const location = useLocation();
   const [idUser, setIdUser] = useState(null);
   const [user, setUser] = useState(null);
   const [popChange, setPopChange] = useState(false);
@@ -55,6 +56,7 @@ export const ToDynamicContextProvider = ({ children }) => {
         setAlert,
         alert,
         navigue,
+        location,
       }}
     >
       {children}

@@ -3,11 +3,10 @@ import Logo from "../../usables/Logo";
 import SectionPost from "../../components/adminComponents/SectionPost";
 import SectionSKills from "../../components/adminComponents/SectionSKills";
 import SectionProfil from "../../components/adminComponents/SectionProfil";
-import { ScrollSection } from "../../context/ScrollSectionContext";
+import { Dynamic } from "../../context/ToDynamicContext";
 
 const Admin = () => {
-  const { location } = ScrollSection();
-  const { navigue } = ScrollSection();
+  const { location, navigue } = Dynamic();
   const goIndex = () => {
     if (location.pathname === "/admin") return navigue("/");
   };

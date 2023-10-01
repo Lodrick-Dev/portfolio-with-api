@@ -8,8 +8,10 @@ import InputChangeImg from "../../usables/InputChangeImg";
 import CheckBox from "../adminComponents/CheckBox";
 import { Dynamic } from "../../context/ToDynamicContext";
 import axios from "axios";
+import { DataPublic } from "../../context/DataPublicContext";
 const FormPost = ({ setSkillsSelect, skillsSelect }) => {
   const { idUser } = Dynamic();
+  const { setCallAgain, callAgain } = DataPublic();
   const { setFormPost } = SlideInSection(); //to preview post
   const { setPostPreview } = SlideInSection(); //to preview post
   const { postPreview } = SlideInSection(); //to preview post
@@ -58,6 +60,8 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
           setLink("");
           setSkillsSelect([]);
           setImgPostPreview(null);
+          setCallAgain(!callAgain);
+          // listCheckBox.current = null;
           //On n'a pas encore traité l'envoi d'image
           return setAlert(res.data.message);
         }

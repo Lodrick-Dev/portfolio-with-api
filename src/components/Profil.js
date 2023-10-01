@@ -5,11 +5,11 @@ import Description from "../usables/Description";
 import { DataPublic } from "../context/DataPublicContext";
 import ImageProfil from "../usables/ImageProfil";
 import TitleLarge from "../usables/TitleLarge";
-import { ScrollSection } from "../context/ScrollSectionContext";
+import { Dynamic } from "../context/ToDynamicContext";
 
 const Profil = () => {
   const { dataProfil } = DataPublic();
-  const { location } = ScrollSection();
+  const { location } = Dynamic();
 
   return (
     <StyledProfil id="profil-composant" $location={location.pathname}>

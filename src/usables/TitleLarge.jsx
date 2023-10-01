@@ -1,11 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
-import { ScrollSection } from "../context/ScrollSectionContext";
 import { Dynamic } from "../context/ToDynamicContext";
 
 const TitleLarge = ({ text }) => {
-  const { location } = ScrollSection();
-  const { setPopChange } = Dynamic();
+  const { setPopChange, location } = Dynamic();
   const admin = () => {
     // console.log(location);
     if (location.pathname === "/") setPopChange(true);

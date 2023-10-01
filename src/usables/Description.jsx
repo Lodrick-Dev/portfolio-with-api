@@ -5,11 +5,11 @@ import {
   MdOutlinePermIdentity,
 } from "react-icons/md";
 import { styled } from "styled-components";
-import { ScrollSection } from "../context/ScrollSectionContext";
+import { Dynamic } from "../context/ToDynamicContext";
 
 const Description = ({ dataProfil }) => {
   // console.log(dataProfil);
-  const { location } = ScrollSection();
+  const { location } = Dynamic();
   return (
     //le $ devant location car StyledComponent veut le renvoyé dans le dom
     <StyledDescription $location={location.pathname}>

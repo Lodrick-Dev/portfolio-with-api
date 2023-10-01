@@ -47,6 +47,7 @@ const StyledListsProjets = styled.ul`
   padding: 5px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   li {
     font-size: 1.5em;
