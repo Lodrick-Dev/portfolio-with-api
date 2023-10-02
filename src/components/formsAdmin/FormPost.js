@@ -10,21 +10,28 @@ import { Dynamic } from "../../context/ToDynamicContext";
 import axios from "axios";
 import { DataPublic } from "../../context/DataPublicContext";
 const FormPost = ({ setSkillsSelect, skillsSelect }) => {
-  const { idUser } = Dynamic();
+  const { idUser, setAlert, setSpin } = Dynamic();
   const { setCallAgain, callAgain } = DataPublic();
-  const { setFormPost } = SlideInSection(); //to preview post
-  const { setPostPreview } = SlideInSection(); //to preview post
-  const { postPreview } = SlideInSection(); //to preview post
-  const { setImgPostPreview } = SlideInSection(); //to preview post > img
+  const {
+    setFormPost,
+    setPostPreview,
+    postPreview,
+    imgPostPreview,
+    setImgPostPreview,
+  } = SlideInSection(); //to preview post
   const [toChangeImg, setToChangeImg] = useState(false);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
   const imgSelectedCurrent = useRef();
-  const { setAlert } = Dynamic();
-  const { setSpin } = Dynamic();
-  const { spin } = Dynamic();
+  let data;
 
+  //small fonction to prepare to img
+  const prepareImg = (img, id) => {
+    data = new FormData();
+    data.append("imgpostupload", img);
+    data.append("id", id);
+  };
   //action fonction
   const changeImgCurrent = () => {
     imgSelectedCurrent.current.click();
@@ -51,18 +58,24 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
         },
       }).then((res) => {
         console.log(res);
-        setSpin(false);
-        if (res.data.error) return setAlert(res.data.error);
-        if (res.data.message) {
-          //on doit effacé les chmaps remettre a zéro
+        if (res.data.id) {
+          //Traitement img ici
+          prepareImg(imgPostPreview, res.data.id);
+          sendImg(res.data.id);
+          //on doit effacé les chmaps remettre a zéro après l'envoie de l'image
           setName("");
           setDescription("");
           setLink("");
           setSkillsSelect([]);
           setImgPostPreview(null);
-          setCallAgain(!callAgain);
-          // listCheckBox.current = null;
-          //On n'a pas encore traité l'envoi d'image
+          // setCallAgain(!callAgain);
+          setSpin(false);
+        }
+        if (res.data.error) {
+          setSpin(false);
+          return setAlert(res.data.error);
+        } else {
+          setSpin(false);
           return setAlert(res.data.message);
         }
       });
@@ -71,6 +84,27 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
     }
   };
 
+  const sendImg = async (id) => {
+    //id vient de res.data.id,
+    // method "put"
+    try {
+      await axios({
+        method: "put",
+        url: `${process.env.REACT_APP_API_URI}post/update/img/${id}`,
+        withCredentials: true,
+        data,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .then(() => {
+          setCallAgain(!callAgain);
+        });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
   //useEffect
   useEffect(() => {
     if (name !== "") {
