@@ -84,6 +84,8 @@ const StyledOneProjet = styled.div`
   }
   div > .deleteObj {
     position: absolute;
+    z-index: 15;
+    cursor: pointer;
     right: 5px;
     top: 5px;
     color: red;
