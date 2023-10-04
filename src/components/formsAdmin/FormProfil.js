@@ -7,11 +7,11 @@ import { styled } from "styled-components";
 import InputChangeImg from "../../usables/InputChangeImg";
 import { DataPublic } from "../../context/DataPublicContext";
 import Resizer from "react-image-file-resizer";
+import { Dynamic } from "../../context/ToDynamicContext";
 
 const FormProfil = () => {
-  const { setDataProfil } = DataPublic();
-  const { dataProfil } = DataPublic();
-  const { dataProfilStatic } = DataPublic();
+  const { setDataProfil, dataProfil, dataProfilStatic } = DataPublic();
+  const { setAlert } = Dynamic();
   const [watchToImg, setWatchToImg] = useState(true);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
@@ -22,8 +22,24 @@ const FormProfil = () => {
   const imageSelected = useRef(); //to component select img local
   const handleSubUpdate = (e) => {
     e.preventDefault();
-    if (name || city || titre || description === "")
-      return alert("Les champs sont vide");
+    if (!name && !city && !titre && !description) {
+      if (imgSelectedPreview) {
+        //juste img
+        return setAlert("Tous les champs sont vide sauf img donc on envoi");
+      }
+      return setAlert("Erreur : Les champs sont vide");
+    } else {
+      //si un des deux variable son rempli  on vient ici
+      if (name || city || titre || description || imgSelectedPreview) {
+        //ne pas oublié prendre l'image en compte ici
+        return setAlert("Un des champs est rempli même l'image");
+      }
+    }
+  };
+
+  const updateJustImgProfil = (e) => {
+    e.preventDefault();
+    setAlert("Update juste l'img du profil");
   };
 
   //to download picture local
