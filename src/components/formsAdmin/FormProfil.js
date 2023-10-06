@@ -8,11 +8,11 @@ import InputChangeImg from "../../usables/InputChangeImg";
 import { DataPublic } from "../../context/DataPublicContext";
 import Resizer from "react-image-file-resizer";
 import { Dynamic } from "../../context/ToDynamicContext";
+import axios from "axios";
 
 const FormProfil = () => {
   const { setDataProfil, dataProfil, dataProfilStatic } = DataPublic();
-  const { setAlert } = Dynamic();
-  const [watchToImg, setWatchToImg] = useState(true);
+  const { setAlert, idUser, spin, setSpin } = Dynamic();
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [titre, setTitre] = useState("");
@@ -20,14 +20,43 @@ const FormProfil = () => {
   const [imgSelectedPreview, setSelectedImgPreview] = useState("");
   const [imgUri, setImgUri] = useState("");
   const imageSelected = useRef(); //to component select img local
+  let data;
+  const justImgProfil = async (img, id) => {
+    //profil/upload/aws
+    data = new FormData();
+    data.append("imageprofil", img);
+    data.append("id", id);
+    try {
+      await axios({
+        method: "post",
+        url: `${process.env.REACT_APP_API_URI}profil/upload/aws`,
+        withCredentials: true,
+        data,
+      }).then((res) => {
+        console.log(res);
+        //On vide l'img du preview
+        setImgUri("");
+        setSelectedImgPreview("");
+        setSpin(false);
+        if (res.data.error) return setAlert(res.data.error);
+        if (res.data.message) return setAlert(res.data.message);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleSubUpdate = (e) => {
+    setSpin(true);
+    data = new FormData();
     e.preventDefault();
     if (!name && !city && !titre && !description) {
       if (imgSelectedPreview) {
         //juste img
-        return setAlert("Tous les champs sont vide sauf img donc on envoi");
+        // return setAlert("Tous les champs sont vide sauf img donc on envoi");
+        justImgProfil(imgSelectedPreview, idUser);
+      } else {
+        return setAlert("Erreur : Les champs sont vide");
       }
-      return setAlert("Erreur : Les champs sont vide");
     } else {
       //si un des deux variable son rempli  on vient ici
       if (name || city || titre || description || imgSelectedPreview) {
