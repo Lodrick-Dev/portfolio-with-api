@@ -12,6 +12,39 @@ export const DataPublicContextProvider = ({ children }) => {
   const [callAgain, setCallAgain] = useState(false);
   const [callAfter, setCallAfter] = useState(false);
 
+  //fonction
+  const getAllProjets = async () => {
+    try {
+      await axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URI}contents/all`,
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res);
+        setListProjets(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getDataProfil = async () => {
+    try {
+      await axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URI}user/static`,
+        withCredentials: true,
+      }).then((res) => {
+        setDataProfil(res.data);
+        setDataProfilStatic(res.data);
+        // console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //useEffect
   useEffect(() => {
     const goFetchSkills = async () => {
       try {
@@ -28,36 +61,7 @@ export const DataPublicContextProvider = ({ children }) => {
       }
     };
     goFetchSkills();
-    const getDataProfil = async () => {
-      try {
-        await axios({
-          method: "get",
-          url: `${process.env.REACT_APP_API_URI}user/static`,
-          withCredentials: true,
-        }).then((res) => {
-          setDataProfil(res.data);
-          setDataProfilStatic(res.data);
-          // console.log(res);
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getDataProfil();
-    const getAllProjets = async () => {
-      try {
-        await axios({
-          method: "get",
-          url: `${process.env.REACT_APP_API_URI}contents/all`,
-          withCredentials: true,
-        }).then((res) => {
-          console.log(res);
-          setListProjets(res.data);
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getAllProjets();
   }, [callAgain, callAfter]);
 
@@ -75,6 +79,7 @@ export const DataPublicContextProvider = ({ children }) => {
         setCallAgain,
         callAfter,
         setCallAfter,
+        getDataProfil,
       }}
     >
       {children}

@@ -11,7 +11,8 @@ import { Dynamic } from "../../context/ToDynamicContext";
 import axios from "axios";
 
 const FormProfil = () => {
-  const { setDataProfil, dataProfil, dataProfilStatic } = DataPublic();
+  const { setDataProfil, dataProfil, dataProfilStatic, getDataProfil } =
+    DataPublic();
   const { setAlert, idUser, spin, setSpin } = Dynamic();
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
@@ -45,23 +46,59 @@ const FormProfil = () => {
       console.log(error);
     }
   };
+
+  const someUpdateOrAll = async (name, city, titre, description) => {
+    // const datas = new FormData();
+    // datas.append("pseudo", name ? name : dataProfilStatic.pseudo);
+    // datas.append("localisation", city ? city : dataProfilStatic.localisation);
+    // datas.append("title", titre ? titre : dataProfilStatic.title);
+    // datas.append(
+    //   "description",
+    //   description ? description : dataProfilStatic.description
+    // );
+    try {
+      await axios({
+        method: "put",
+        url: `${process.env.REACT_APP_API_URI}user/${idUser}`,
+        withCredentials: true,
+        data: {
+          pseudo: name ? name : dataProfilStatic.pseudo,
+          localisation: city ? city : dataProfilStatic.localisation,
+          title: titre ? titre : dataProfilStatic.title,
+          description: description ? description : dataProfilStatic.description,
+        },
+      }).then((res) => {
+        console.log(res);
+        getDataProfil();
+        if (res.data.message) return setAlert(res.data.message);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubUpdate = (e) => {
-    setSpin(true);
-    data = new FormData();
     e.preventDefault();
+    setSpin(true);
     if (!name && !city && !titre && !description) {
       if (imgSelectedPreview) {
         //juste img
         // return setAlert("Tous les champs sont vide sauf img donc on envoi");
         justImgProfil(imgSelectedPreview, idUser);
       } else {
-        return setAlert("Erreur : Les champs sont vide");
+        setSpin(false);
+        return setAlert("Erreur : Les champs sont vides");
       }
     } else {
       //si un des deux variable son rempli  on vient ici
       if (name || city || titre || description || imgSelectedPreview) {
         //ne pas oublié prendre l'image en compte ici
-        return setAlert("Un des champs est rempli même l'image");
+        setSpin(false);
+        someUpdateOrAll(name, city, titre, description);
+        // return alert(
+        //   `Voici le nom ${name} la ville ${city} le titre ${titre} les description ${description}`
+        // );
+        // return setAlert("Un des champs est rempli même l'image");
       }
     }
   };
@@ -147,25 +184,37 @@ const FormProfil = () => {
         <TitleMedium text={"Mon profil"} />
         <input
           type="text"
-          placeholder={dataProfilStatic.pseudo}
+          placeholder={
+            dataProfilStatic.pseudo ? dataProfilStatic.pseudo : "Pseudo"
+          }
           value={name ? name : ""}
           // value={dataProfil.pseudo || ""}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
-          placeholder={dataProfilStatic.localisation}
+          placeholder={
+            dataProfilStatic.localisation
+              ? dataProfilStatic.localisation
+              : "Lieu"
+          }
           // value={dataProfil.localisation || ""}
           onChange={(e) => setCity(e.target.value)}
         />
         <input
           type="text"
-          placeholder={dataProfilStatic.title}
+          placeholder={
+            dataProfilStatic.title ? dataProfilStatic.title : "Titre"
+          }
           // value={dataProfil.title || ""}
           onChange={(e) => setTitre(e.target.value)}
         />
         <textarea
-          placeholder={dataProfilStatic.description}
+          placeholder={
+            dataProfilStatic.description
+              ? dataProfilStatic.description
+              : "Description"
+          }
           // value={dataProfil.description || ""}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
@@ -175,14 +224,7 @@ const FormProfil = () => {
           actionChange={(e) => setSelectedImgPreview(e.target.files[0])}
         />
 
-        <Button
-          text={
-            titre || description || name || (city === "" && imgUri !== "")
-              ? "Mettre à jour l'image"
-              : "Mettre à mon profil"
-          }
-          icon={<MdUpdate />}
-        />
+        <Button text={"Mettre à mon profil"} icon={<MdUpdate />} />
         {titre || description || name || city || imgUri ? (
           <Button
             text={"Annuler"}
