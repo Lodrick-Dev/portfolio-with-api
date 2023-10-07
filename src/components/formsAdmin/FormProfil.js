@@ -47,15 +47,13 @@ const FormProfil = () => {
     }
   };
 
-  const someUpdateOrAll = async (name, city, titre, description) => {
-    // const datas = new FormData();
-    // datas.append("pseudo", name ? name : dataProfilStatic.pseudo);
-    // datas.append("localisation", city ? city : dataProfilStatic.localisation);
-    // datas.append("title", titre ? titre : dataProfilStatic.title);
-    // datas.append(
-    //   "description",
-    //   description ? description : dataProfilStatic.description
-    // );
+  const someUpdateOrAll = async (
+    name,
+    city,
+    titre,
+    description,
+    imgSelectedPreview
+  ) => {
     try {
       await axios({
         method: "put",
@@ -70,7 +68,15 @@ const FormProfil = () => {
       }).then((res) => {
         console.log(res);
         getDataProfil();
-        if (res.data.message) return setAlert(res.data.message);
+        if (res.data.message) {
+          if (res.data.message.includes("Erreur")) {
+            return setAlert(res.data.message);
+          } else {
+            if (imgSelectedPreview) {
+              justImgProfil(imgSelectedPreview, idUser);
+            }
+          }
+        }
       });
     } catch (error) {
       console.log(error);
@@ -84,6 +90,7 @@ const FormProfil = () => {
       if (imgSelectedPreview) {
         //juste img
         // return setAlert("Tous les champs sont vide sauf img donc on envoi");
+        console.log("just ici haha");
         justImgProfil(imgSelectedPreview, idUser);
       } else {
         setSpin(false);
@@ -94,7 +101,8 @@ const FormProfil = () => {
       if (name || city || titre || description || imgSelectedPreview) {
         //ne pas oublié prendre l'image en compte ici
         setSpin(false);
-        someUpdateOrAll(name, city, titre, description);
+        console.log("mainetnat on est la haha");
+        someUpdateOrAll(name, city, titre, description, imgSelectedPreview);
         // return alert(
         //   `Voici le nom ${name} la ville ${city} le titre ${titre} les description ${description}`
         // );
