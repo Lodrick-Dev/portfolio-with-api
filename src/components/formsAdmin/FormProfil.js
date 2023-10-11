@@ -76,6 +76,8 @@ const FormProfil = () => {
               justImgProfil(imgSelectedPreview, idUser);
             }
           }
+          //si une info seulement
+          return setAlert(res.data.message);
         }
       });
     } catch (error) {

@@ -6,7 +6,7 @@ const TitleMedium = ({ text, actionClick }) => {
   const { idUser } = Dynamic();
   return (
     <StyledTitleMedium onClick={actionClick} $csstxt={idUser}>
-      {text ? text : "Aucun medium titre"}
+      {text ? text : " Aucun medium titre"}
     </StyledTitleMedium>
   );
 };
@@ -14,4 +14,5 @@ const TitleMedium = ({ text, actionClick }) => {
 export default TitleMedium;
 const StyledTitleMedium = styled.h2`
   cursor: ${({ $csstxt }) => ($csstxt ? "pointer" : "alias")};
+  color: #cacaca;
 `;

@@ -37,8 +37,7 @@ const StyledProfil = styled.div`
   justify-content: center;
   align-items: center;
   .sous-container-profil {
-    /* height: 70vh; */
-    height: ${({ $location }) => ($location === "/admin" ? "35vh" : "70vh")};
+    height: ${({ $location }) => ($location === "/admin" ? "35vh" : "80vh")};
     background: rgba(115, 113, 113, 0.67);
     backdrop-filter: blur(3px);
     width: 80%;
@@ -51,7 +50,10 @@ const StyledProfil = styled.div`
   .sous-container-profil > div {
     width: 50%;
     height: 90%;
-    background: red;
+    padding: 15px;
+    border-radius: 15px;
+    /* background: red; */
+    background: #2d5092;
     display: flex;
     flex-direction: column;
   }

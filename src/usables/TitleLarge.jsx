@@ -20,7 +20,8 @@ export default TitleLarge;
 const StyledTitle = styled.h1`
   /* font-size: 3em; */
   font-size: ${({ $location }) => ($location === "/admin" ? "1.5em" : "3em")};
-  color: #7aff7a;
+  /* color: #7aff7a; */
+  color: #06ce8d;
   user-select: none;
   text-align: center;
 `;

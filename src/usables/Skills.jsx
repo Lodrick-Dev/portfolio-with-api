@@ -6,11 +6,10 @@ import { Dynamic } from "../context/ToDynamicContext";
 import axios from "axios";
 
 const Skills = () => {
-  const { skillsPublic } = DataPublic();
-  const { setAlert } = Dynamic();
-  const { idUser } = Dynamic();
-  const { callAfter, setCallAfter } = DataPublic();
+  const { skillsPublic, callAfter, setCallAfter } = DataPublic();
+  const { setAlert, idUser, location } = Dynamic();
   const deleteSkill = async (id, name) => {
+    if (location.pathname !== "/admin") return;
     if (
       window.confirm(
         `Êtes-vous sûr de vouloir supprimer cette compétence : ${name}`
@@ -36,7 +35,7 @@ const Skills = () => {
   };
   return (
     <StyledSkills $csstext={idUser}>
-      <TitleMedium text={"Bon savoir"} />
+      {/* <TitleMedium text={"Bon savoir"} /> */}
       {skillsPublic &&
         skillsPublic.map((skill) => (
           <li
@@ -58,10 +57,13 @@ const StyledSkills = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  background: yellow;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* background: yellow; */
   h2 {
     width: 100%;
-    background: blueviolet;
     text-align: center;
   }
   li {
@@ -70,6 +72,6 @@ const StyledSkills = styled.ul`
     margin: 10px;
     border-radius: 5px;
     background: greenyellow;
-    cursor: ${({ $csstext }) => ($csstext ? "pointer" : "alias")};
+    cursor: ${({ $csstext }) => ($csstext ? "pointer" : "default")};
   }
 `;
