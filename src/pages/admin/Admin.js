@@ -4,6 +4,7 @@ import SectionPost from "../../components/adminComponents/SectionPost";
 import SectionSKills from "../../components/adminComponents/SectionSKills";
 import SectionProfil from "../../components/adminComponents/SectionProfil";
 import { Dynamic } from "../../context/ToDynamicContext";
+import SectionPassword from "../../components/adminComponents/SectionPassword";
 
 const Admin = () => {
   const { location, navigue } = Dynamic();
@@ -17,6 +18,7 @@ const Admin = () => {
       <SectionPost />
       <SectionSKills />
       <SectionProfil />
+      <SectionPassword />
     </>
   );
 };
