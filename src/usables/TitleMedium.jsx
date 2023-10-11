@@ -15,4 +15,5 @@ export default TitleMedium;
 const StyledTitleMedium = styled.h2`
   cursor: ${({ $csstxt }) => ($csstxt ? "pointer" : "alias")};
   color: #cacaca;
+  font-size: 2.5em;
 `;

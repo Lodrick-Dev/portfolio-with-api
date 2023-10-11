@@ -4,24 +4,33 @@ import TitleMedium from "../../usables/TitleMedium";
 import Button from "../../usables/Button";
 
 const FormContact = () => {
+  const handleSub = (e) => {
+    e.preventDefault();
+  };
   return (
-    <StyledFormContact>
+    <StyledFormContact onSubmit={(e) => handleSub(e)}>
       <div className="before-form">
-        <TitleMedium text={"Contactez-nous"} />
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-        necessitatibus perspiciatis quo sit, blanditiis explicabo atque mollitia
-        recusandae iure voluptatem numquam consequatur quasi reprehenderit rem
-        architecto animi, temporibus consectetur ea.
+        <TitleMedium text={"Contact 🤔"} />
+        <hr />
+        <p>
+          Vous avez des questions, des idées de projets, ou simplement envie de
+          discuter ? Je serais ravi d'entendre ce que vous avez à dire.
+        </p>
+        <p>
+          {" "}
+          N'hésitez pas à remplir le formulaire pour me contacter. Je vous
+          répondrai dans les plus brefs délais.
+        </p>
       </div>
       <form>
-        <input type="text" placeholder="Nom" />
-        <input type="email" placeholder="Email" />
+        <input type="text" placeholder="Nom*" />
+        <input type="email" placeholder="Email*" />
         <textarea
           name=""
           id=""
           cols="30"
           rows="10"
-          placeholder="Votre message"
+          placeholder="Votre message*"
         ></textarea>
         <input type="hidden" />
         <Button text={"Envoyer"} />
@@ -35,20 +44,38 @@ export default FormContact;
 const StyledFormContact = styled.div`
   /* background: green; */
   background: rgba(115, 113, 113, 0.67);
-  /* border: solid 2px green; */
+  border-bottom: solid 10px #06ce8d;
   border-radius: 10px;
   padding: 24px;
   width: 70%;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
+  align-items: center;
+  height: 70vh;
   .before-form {
-    width: 30%;
+    width: 45%;
+    height: 50%;
+    display: flex;
+    /* background: red; */
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .before-form > hr {
+    width: 100%;
+    border-radius: 10px;
+    border: solid 2px #06ce8d;
+  }
+  .before-form > p {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #cacaca;
   }
   form {
     width: 50%;
     padding: 10px;
-    border: solid 2px red;
+    /* border: solid 2px ; */
     /* background: red !important; */
     display: flex;
     flex-direction: column;
@@ -63,21 +90,24 @@ const StyledFormContact = styled.div`
     outline: none;
     border: none;
     border-bottom: solid 2px #212121;
-    border-radius: 3px;
+    border-radius: 5px;
   }
   form > input:focus {
-    background: #5cc05c;
+    background: #06ce8d;
+    border-bottom: solid 3px yellow;
   }
   form > textarea {
     width: 70%;
     outline: none;
     border: none;
     border-bottom: solid 2px #212121;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 3px;
     font-size: 1.2em;
+    resize: none;
   }
   form > textarea:focus {
-    background: #5cc05c;
+    background: #06ce8d;
+    border-bottom: solid 3px yellow;
   }
 `;
