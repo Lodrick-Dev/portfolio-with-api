@@ -29,6 +29,7 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 1.2em;
+  user-select: none;
   /* .icon {
     margin-left: 10px;
   } */
