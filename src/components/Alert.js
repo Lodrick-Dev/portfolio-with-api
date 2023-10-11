@@ -34,7 +34,7 @@ const StyledAlert = styled.div`
     ${({ $tocss }) => ($tocss.includes("Erreur") ? "red" : "#4CAF50")};
   top: 5px;
   right: 5px;
-  z-index: 20;
+  z-index: 30;
   border-radius: 5px;
   box-shadow: 1px 4px 8px #3f3f3f8c;
   padding: 10px;
