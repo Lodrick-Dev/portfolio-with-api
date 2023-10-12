@@ -42,7 +42,7 @@ const StyledProfil = styled.div`
     backdrop-filter: blur(3px);
     width: 80%;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
