@@ -7,6 +7,7 @@ const ToDynamicContext = createContext();
 
 export const ToDynamicContextProvider = ({ children }) => {
   const location = useLocation();
+  const [token, setToken] = useState(null);
   const [idUser, setIdUser] = useState(null);
   const [user, setUser] = useState(null);
   const [popChange, setPopChange] = useState(false);
@@ -14,6 +15,19 @@ export const ToDynamicContextProvider = ({ children }) => {
   const [spin, setSpin] = useState(false);
   const [skillsSelect, setSkillsSelect] = useState([]);
   const navigue = useNavigate();
+  const tokenCRSF = async () => {
+    try {
+      await axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URI}`,
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     const checkIpFirstTime = async () => {
       try {
@@ -38,11 +52,14 @@ export const ToDynamicContextProvider = ({ children }) => {
       //si idUse alors navigue
     };
     checkIpFirstTime();
+    tokenCRSF();
   }, [idUser]);
 
   return (
     <ToDynamicContext.Provider
       value={{
+        token,
+        setToken,
         skillsSelect,
         setSkillsSelect,
         spin,
