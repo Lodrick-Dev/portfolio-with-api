@@ -1,14 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import TitleMedium from "../../usables/TitleMedium";
 import Button from "../../usables/Button";
+import { Dynamic } from "../../context/ToDynamicContext";
+import axios from "axios";
 
 const FormContact = () => {
-  const handleSub = (e) => {
+  const { setSpin, setAlert } = Dynamic();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const handleSub = async (e) => {
     e.preventDefault();
+    setSpin(true);
+    if (!name || !email || !message) {
+      setSpin(false);
+      setAlert("Erreur : Tous les champs sont obligatoires");
+    }
+    try {
+      await axios({
+        method: "post",
+        url: `${process.env.REACT_APP_API_URI}contact/mail`,
+        withCredentials: true,
+        data: {
+          emailCatch: email,
+          text: message,
+          name,
+        },
+      }).then((res) => {
+        console.log(res);
+        if (res.data.message && res.data.message.includes("Erreur")) {
+          setSpin(false);
+
+          return setAlert(res.data.message);
+        }
+        setAlert(res.data.message);
+        setName("");
+        setEmail("");
+        setMessage("");
+        setSpin(false);
+      });
+    } catch (error) {
+      console.log(error);
+      setSpin(false);
+    }
   };
   return (
-    <StyledFormContact onSubmit={(e) => handleSub(e)}>
+    <StyledFormContact>
       <div className="before-form">
         <TitleMedium text={"Contact 🤔"} />
         <hr />
@@ -22,15 +60,27 @@ const FormContact = () => {
           répondrai dans les plus brefs délais.
         </p>
       </div>
-      <form>
-        <input type="text" placeholder="Nom*" />
-        <input type="email" placeholder="Email*" />
+      <form onSubmit={(e) => handleSub(e)}>
+        <input
+          type="text"
+          placeholder="Nom*"
+          value={name ? name : ""}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email*"
+          value={email ? email : ""}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <textarea
           name=""
           id=""
           cols="30"
           rows="10"
+          value={message ? message : ""}
           placeholder="Votre message*"
+          onChange={(e) => setMessage(e.target.value)}
         ></textarea>
         <input type="hidden" />
         <Button text={"Envoyer"} />
