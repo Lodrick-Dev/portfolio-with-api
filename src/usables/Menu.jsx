@@ -3,26 +3,26 @@ import { styled } from "styled-components";
 import { ScrollSection } from "../context/ScrollSectionContext";
 
 const Menu = () => {
-  const { scrollSmooth } = ScrollSection();
-  const { menuActif } = ScrollSection();
+  const { scrollSmooth, screenContact, screenProjets, screenProfil } =
+    ScrollSection();
   return (
     <StyledMenu>
       <ul>
         <li
           onClick={() => scrollSmooth("profil-composant")}
-          className={menuActif === "profil-composant" ? "actif-menu" : ""}
+          className={screenProfil ? "actif-menu" : ""}
         >
           Accueil
         </li>
         <li
           onClick={() => scrollSmooth("projet-composant")}
-          className={menuActif === "projet-composant" ? "actif-menu" : ""}
+          className={screenProjets ? "actif-menu" : ""}
         >
           Réalisation
         </li>
         <li
           onClick={() => scrollSmooth("contact-composant")}
-          className={menuActif === "contact-composant" ? "actif-menu" : ""}
+          className={screenContact ? "actif-menu" : ""}
         >
           Contact
         </li>

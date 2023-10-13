@@ -1,11 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { styled } from "styled-components";
 
-const Projets = () => {
-  return <StyledProjets id="projet-composant">Projets</StyledProjets>;
+const Projets = (props, ref) => {
+  return (
+    <StyledProjets id="projet-composant" ref={ref}>
+      Projets
+    </StyledProjets>
+  );
 };
 
-export default Projets;
+export default forwardRef(Projets);
 
 const StyledProjets = styled.div`
   height: 100vh;

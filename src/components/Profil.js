@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Skills from "../usables/Skills";
 import styled from "styled-components";
 import Description from "../usables/Description";
@@ -7,12 +7,12 @@ import ImageProfil from "../usables/ImageProfil";
 import TitleLarge from "../usables/TitleLarge";
 import { Dynamic } from "../context/ToDynamicContext";
 
-const Profil = () => {
+const Profil = (props, ref) => {
   const { dataProfil } = DataPublic();
   const { location } = Dynamic();
 
   return (
-    <StyledProfil id="profil-composant" $location={location.pathname}>
+    <StyledProfil id="profil-composant" $location={location.pathname} ref={ref}>
       <div className="sous-container-profil">
         <ImageProfil />
         <div>
@@ -25,7 +25,9 @@ const Profil = () => {
   );
 };
 
-export default Profil;
+//props, ref et forwardRef pour qu'on puisse définir un useRef depuis là
+//où le composant (Contact) est appelé, ici dans component Home.
+export default forwardRef(Profil);
 const StyledProfil = styled.div`
   background: url("./items/background1.jpg");
   background-size: cover;
