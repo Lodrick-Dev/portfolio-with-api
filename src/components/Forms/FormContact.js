@@ -10,23 +10,24 @@ const FormContact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [inputNot, setInputNot] = useState("");
   const handleSub = async (e) => {
     e.preventDefault();
     setSpin(true);
+    if (inputNot) {
+      setSpin(false);
+      return setAlert("Erreur : Lol robot 🤖");
+    }
     if (!name || !email || !message) {
       setSpin(false);
-      setAlert("Erreur : Tous les champs sont obligatoires");
+      return setAlert("Erreur : Tous les champs sont obligatoires");
     }
     try {
       await axios({
         method: "post",
         url: `${process.env.REACT_APP_API_URI}contact/mail`,
         withCredentials: true,
-        data: {
-          emailCatch: email,
-          text: message,
-          name,
-        },
+        data: { hidden: inputNot, emailCatch: email, text: message, name },
       }).then((res) => {
         console.log(res);
         if (res.data.message && res.data.message.includes("Erreur")) {
@@ -43,6 +44,7 @@ const FormContact = () => {
     } catch (error) {
       console.log(error);
       setSpin(false);
+      return setAlert("Erreur : Une erreur inattendu est survenue");
     }
   };
   return (
@@ -82,7 +84,7 @@ const FormContact = () => {
           placeholder="Votre message*"
           onChange={(e) => setMessage(e.target.value)}
         ></textarea>
-        <input type="hidden" />
+        <input type="hidden" onChange={(e) => setInputNot(e.target.value)} />
         <Button text={"Envoyer"} />
       </form>
     </StyledFormContact>
