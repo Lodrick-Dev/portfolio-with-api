@@ -39,12 +39,14 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
 
   const subForm = async (e) => {
     e.preventDefault();
-    // setSpin(true);
+    setSpin(true);
     // alert("ici");
     console.log(postPreview);
     console.log(skillsSelect);
     if (name && link && description && skillsSelect.length > 0) {
-      setSpin(true);
+      // setSpin(false);
+      console.log(data);
+      // return;
       await axios({
         method: "post",
         url: `${process.env.REACT_APP_API_URI}contents/add`,
@@ -55,6 +57,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
           content: description,
           lien: link,
           skills: skillsSelect,
+          img: imgPostPreview ? "data" : undefined,
         },
       }).then((res) => {
         console.log(res);
@@ -69,6 +72,15 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
           setSkillsSelect([]);
           setImgPostPreview(null);
           // setCallAgain(!callAgain);
+          // setSpin(false);
+        } else {
+          console.log(res);
+          setName("");
+          setDescription("");
+          setLink("");
+          setSkillsSelect([]);
+          setImgPostPreview(null);
+          setCallAgain(!callAgain);
           setSpin(false);
         }
         if (res.data.error) {
@@ -80,6 +92,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
         }
       });
     } else {
+      setSpin(false);
       return setAlert("Erreur : Les champs nécéssaires doivent être rempli");
     }
   };
@@ -93,13 +106,13 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
         url: `${process.env.REACT_APP_API_URI}post/update/img/${id}`,
         withCredentials: true,
         data,
-      })
-        .then((res) => {
-          console.log(res);
-        })
-        .then(() => {
-          setCallAgain(!callAgain);
-        });
+      }).then((res) => {
+        console.log(res);
+
+        setAlert(res.data.message);
+        setSpin(false);
+        setCallAgain(!callAgain);
+      });
     } catch (error) {
       console.log(error);
       return;
