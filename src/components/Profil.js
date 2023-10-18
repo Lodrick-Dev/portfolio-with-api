@@ -11,6 +11,8 @@ const Profil = (props, ref) => {
   const { dataProfil } = DataPublic();
   const { location } = Dynamic();
 
+  //$ devant location pour qu'on le passe uniquement dans le css
+  //car react veut l'envoyer en front
   return (
     <StyledProfil id="profil-composant" $location={location.pathname} ref={ref}>
       <div className="sous-container-profil">
@@ -58,5 +60,15 @@ const StyledProfil = styled.div`
     background: #2d5092;
     display: flex;
     flex-direction: column;
+  }
+  @media screen and (max-width: 884px) {
+    .sous-container-profil {
+      width: 90%;
+      padding: 5px;
+      justify-content: space-around;
+    }
+    .sous-container-profil > div {
+      height: 50%;
+    }
   }
 `;

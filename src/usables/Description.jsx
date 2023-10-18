@@ -57,4 +57,15 @@ const StyledDescription = styled.div`
     margin-right: 10px;
     color: yellow;
   }
+  @media screen and (max-width: 884px) {
+    strong,
+    span {
+      font-size: ${({ $location }) =>
+        $location === "/admin" ? "1.1em" : "1.8em"};
+    }
+    p {
+      font-size: ${({ $location }) =>
+        $location === "/admin" ? "0.9em" : "1.5em"};
+    }
+  }
 `;
