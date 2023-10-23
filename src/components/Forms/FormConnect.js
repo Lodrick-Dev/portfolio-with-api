@@ -17,15 +17,18 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
   const handleConnect = (e) => {
     e.preventDefault();
     if (mdpForget) {
-      alert("init mdp");
+      if (!email) return setAlert("Erreur: Un email est obligatoire");
+      setSpin(true);
+      forgetMdp(email);
+      // return alert("init mdp");
     } else {
       setSpin(true);
       connexionUser(email, password);
     }
   };
   const connexionUser = async (email, password) => {
-    // if (!email || !password)
-    //   return setAlert("Erreur :  Tous les champs sont nécessaires 😥");
+    if (!email || !password)
+      return setAlert("Erreur :  Tous les champs sont nécessaires 😥");
     try {
       await axios({
         method: "post",
@@ -67,6 +70,23 @@ const FormConnect = ({ mdpForget, setMdpForget }) => {
             }
           }, 1000);
         }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const forgetMdp = async (email) => {
+    try {
+      await axios({
+        method: "put",
+        url: `${process.env.REACT_APP_API_URI}user/init/${email}`,
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res);
+        setAlert(res.data.message);
+        setSpin(false);
+        return;
       });
     } catch (error) {
       console.log(error);
