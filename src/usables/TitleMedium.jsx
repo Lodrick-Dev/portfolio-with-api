@@ -13,7 +13,7 @@ const TitleMedium = ({ text, actionClick }) => {
 
 export default TitleMedium;
 const StyledTitleMedium = styled.h2`
-  cursor: ${({ $csstxt }) => ($csstxt ? "pointer" : "alias")};
+  cursor: ${({ $csstxt }) => ($csstxt ? "pointer" : "default")};
   color: #cacaca;
   font-size: 2.5em;
 `;
