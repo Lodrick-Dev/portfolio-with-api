@@ -52,7 +52,13 @@ const StyledDescription = styled.div`
     /* font-size: 1.3em; */
     font-size: ${({ $location }) =>
       $location === "/admin" ? "0.9em" : "1.3em"};
+    height: 10vh;
+    overflow-y: scroll;
   }
+  p::-webkit-scrollbar {
+    display: none;
+  }
+
   .i-in-descrip {
     margin-right: 10px;
     color: yellow;
