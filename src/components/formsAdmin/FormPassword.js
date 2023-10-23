@@ -6,7 +6,8 @@ import { Dynamic } from "../../context/ToDynamicContext";
 import axios from "axios";
 
 const FormPassword = () => {
-  const { setAlert, setSpin, navigue, idUser, user, setIdUser } = Dynamic();
+  const { setAlert, setSpin, navigue, idUser, user, setIdUser, setUser } =
+    Dynamic();
   const [firstEye, setFirstEye] = useState(false);
   const [secondEye, setSecondEye] = useState(false);
   const [thirdEye, setThirdEye] = useState(false);
@@ -63,9 +64,11 @@ const FormPassword = () => {
         method: "get",
         url: `${process.env.REACT_APP_API_URI}user/logout`,
         withCredentials: true,
+      }).then(() => {
+        setIdUser(null);
+        setUser(null);
       });
     } catch (error) {
-      setIdUser(null);
       console.log(error);
     }
   };
