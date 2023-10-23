@@ -50,7 +50,7 @@ const FormContact = () => {
   return (
     <StyledFormContact>
       <div className="before-form">
-        <TitleMedium text={"Contact 🤔"} />
+        <TitleMedium text={"Contact 📨"} />
         <hr />
         <p>
           Vous avez des questions, des idées de projets, ou simplement envie de
