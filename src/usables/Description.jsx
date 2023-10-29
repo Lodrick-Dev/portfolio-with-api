@@ -20,7 +20,7 @@ const Description = ({ dataProfil }) => {
         <MdOutlineLocationOn className="i-in-descrip" />{" "}
         {dataProfil.localisation}{" "}
       </span>
-      <p>
+      <p className="animate__animated animate__bounceInUp animate__faster">
         {" "}
         <MdOutlineDescription className="i-in-descrip" />{" "}
         {dataProfil.description}

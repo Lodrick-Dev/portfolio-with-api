@@ -41,6 +41,7 @@ const Skills = () => {
           <li
             key={skill._id}
             onClick={() => deleteSkill(skill._id, skill.name)}
+            className="animate__animated animate__backInRight animate__faster"
           >
             {skill.name}
           </li>

@@ -5,7 +5,13 @@ import { DataPublic } from "../context/DataPublicContext";
 const ImageProfil = () => {
   const { dataProfil } = DataPublic();
 
-  return <StyledImageProfil src={dataProfil.picture} alt="profil public" />;
+  return (
+    <StyledImageProfil
+      src={dataProfil.picture}
+      alt="profil public"
+      className="animate__animated animate__rubberBand "
+    />
+  );
 };
 
 export default ImageProfil;
