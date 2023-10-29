@@ -14,20 +14,6 @@ export const ToDynamicContextProvider = ({ children }) => {
   const [spin, setSpin] = useState(false);
   const [skillsSelect, setSkillsSelect] = useState([]);
   const navigue = useNavigate();
-  // const tokenCRSF = async () => {
-  //   try {
-  //     await axios({
-  //       method: "get",
-  //       url: `${process.env.REACT_APP_API_URI}`,
-  //       withCredentials: true,
-  //     }).then((res) => {
-  //       console.log(res.data.token);
-  //       setToken(res.data.token);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   useEffect(() => {
     const checkIpFirstTime = async () => {
       try {
@@ -36,7 +22,7 @@ export const ToDynamicContextProvider = ({ children }) => {
           url: `${process.env.REACT_APP_API_URI}jwtid`,
           withCredentials: true,
         }).then((res) => {
-          console.log(res);
+          //console.log(res);
           if (res.data._id) {
             setUser(res.data);
             setIdUser(res.data._id);

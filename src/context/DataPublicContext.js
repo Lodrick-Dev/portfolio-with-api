@@ -20,7 +20,7 @@ export const DataPublicContextProvider = ({ children }) => {
         url: `${process.env.REACT_APP_API_URI}contents/all`,
         withCredentials: true,
       }).then((res) => {
-        console.log(res);
+        //console.log(res);
         setListProjets(res.data);
       });
     } catch (error) {
@@ -54,7 +54,7 @@ export const DataPublicContextProvider = ({ children }) => {
           withCredentials: true,
         }).then((res) => {
           setSkillsPublic(res.data);
-          console.log(res);
+          //console.log(res);
         });
       } catch (error) {
         console.log(error);

@@ -21,7 +21,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log(location);
+    //console.log(location);
     if (location.pathname === "/") {
       setSkillsSelect([]);
     }
