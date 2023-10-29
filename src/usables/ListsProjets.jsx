@@ -6,7 +6,6 @@ import { Dynamic } from "../context/ToDynamicContext";
 
 const ListsProjets = () => {
   const { listProjets } = DataPublic();
-  const { skillsSelect } = Dynamic();
   const { setSkillsSelect } = Dynamic();
   const [projetSelected, setProjetSelected] = useState(null);
   const projetSelect = (id) => {
@@ -14,9 +13,6 @@ const ListsProjets = () => {
 
     setProjetSelected(selected);
     setSkillsSelect(selected.skills);
-    console.log(selected.skills);
-    console.log(skillsSelect);
-    console.log(projetSelected);
   };
   return (
     <StyledListsProjets>
@@ -30,11 +26,7 @@ const ListsProjets = () => {
       <ul>
         {listProjets ? (
           listProjets.map((projet) => (
-            <li
-              key={projet._id}
-              onClick={() => projetSelect(projet._id)}
-              onDoubleClick={() => alert("double click")}
-            >
+            <li key={projet._id} onClick={() => projetSelect(projet._id)}>
               {projet.projet}
             </li>
           ))
