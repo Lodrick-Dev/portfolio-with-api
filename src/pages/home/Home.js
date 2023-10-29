@@ -39,7 +39,7 @@ const Home = () => {
           //to projets component
           if (entry.target === profilRef.current) {
             setScreenProfil(true);
-            console.log("L'élément est visible à l'écran");
+            //console.log("L'élément est visible à l'écran");
           } else {
             setScreenProfil(false);
           }
@@ -47,7 +47,7 @@ const Home = () => {
           //to projets component
           if (entry.target === projetsRef.current) {
             setScreenProjets(true);
-            console.log("L'élément est visible à l'écran");
+            //console.log("L'élément est visible à l'écran");
           } else {
             setScreenProjets(false);
           }
@@ -55,7 +55,7 @@ const Home = () => {
           //to contact component
           if (entry.target === contactRef.current) {
             setScreenContact(true);
-            console.log("L'élément est visible à l'écran");
+            //console.log("L'élément est visible à l'écran");
           } else {
             setScreenContact(false);
           }
