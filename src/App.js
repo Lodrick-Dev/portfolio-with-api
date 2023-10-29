@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import "animate.css";
 import Home from "./pages/home/Home";
 import "./index.css";
 import Admin from "./pages/admin/Admin";
