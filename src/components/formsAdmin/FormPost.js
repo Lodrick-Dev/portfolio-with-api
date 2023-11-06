@@ -24,6 +24,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
   const imgSelectedCurrent = useRef();
+  const [previewUrl, setPreviewUrl] = useState("");
   let data;
 
   //small fonction to prepare to img
@@ -93,6 +94,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
       });
     } else {
       setSpin(false);
+      viewCaptureUrl();
       return setAlert("Erreur : Les champs nécéssaires doivent être rempli");
     }
   };
@@ -116,6 +118,24 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
     } catch (error) {
       console.log(error);
       return;
+    }
+  };
+  //to capture apercu url
+  const viewCaptureUrl = async () => {
+    try {
+      axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URI}preview/url`,
+        withCredentials: true,
+        responseType: "blob",
+      }).then((res) => {
+        console.log(res.data);
+        const blob = new Blob([res.data]);
+        const urlBlob = URL.createObjectURL(blob);
+        setPreviewUrl(urlBlob);
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
   //useEffect
@@ -151,6 +171,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
         placeholder="Lien*"
         value={link ? link : ""}
         onChange={(e) => setLink(e.target.value)}
+        onBlur={() => viewCaptureUrl()}
       />
       <textarea
         placeholder="Description*"
@@ -165,6 +186,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
           actionChange={(e) => setImgPostPreview(e.target.files[0])}
         />
       )}
+      {previewUrl && <img src={previewUrl} alt="appercu" />}
       <Button text={"Poster"} icon={<MdOutlinePostAdd />} />
     </StyledFormPost>
   );
@@ -192,5 +214,9 @@ const StyledFormPost = styled.form`
   textarea {
     margin-top: 10px;
     height: 15vh;
+  }
+  img {
+    width: 100%;
+    /* height: 25px; */
   }
 `;
