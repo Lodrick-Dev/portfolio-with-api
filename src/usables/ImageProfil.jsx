@@ -23,4 +23,8 @@ const StyledImageProfil = styled.img`
   @media screen and (max-width: 884px) {
     width: 40%;
   }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    width: 60%;
+  }
 `;

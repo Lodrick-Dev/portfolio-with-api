@@ -26,4 +26,13 @@ const StyledTitle = styled.h1`
   @media screen and (max-width: 884px) {
     font-size: 2.5em;
   }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    font-size: ${({ $location }) => ($location === "/admin" ? "1.5em" : "2em")};
+  }
+  //360px iphone 12 mini
+  @media screen and (max-width: 360px) {
+    font-size: ${({ $location }) =>
+      $location === "/admin" ? "1.5em" : "1.5em"};
+  }
 `;

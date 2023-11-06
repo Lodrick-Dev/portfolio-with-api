@@ -75,4 +75,14 @@ const StyledSkills = styled.ul`
     background: greenyellow;
     cursor: ${({ $csstext }) => ($csstext ? "pointer" : "default")};
   }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    /* background: red; */
+    width: 100%;
+    li {
+      padding: 3px;
+      font-size: 0.8em;
+      margin: 3px;
+    }
+  }
 `;

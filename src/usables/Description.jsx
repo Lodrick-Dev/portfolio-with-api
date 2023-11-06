@@ -74,4 +74,16 @@ const StyledDescription = styled.div`
         $location === "/admin" ? "0.9em" : "1.5em"};
     }
   }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    strong,
+    span {
+      font-size: ${({ $location }) =>
+        $location === "/admin" ? "1.1em" : "1.2em"};
+    }
+    p {
+      font-size: ${({ $location }) =>
+        $location === "/admin" ? "0.9em" : "1em"};
+    }
+  }
 `;

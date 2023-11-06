@@ -138,4 +138,7 @@ const StyledFormConnect = styled.form`
     cursor: pointer;
     color: pink;
   }
+  @media screen and (max-width: 428px) {
+    width: 85%;
+  }
 `;

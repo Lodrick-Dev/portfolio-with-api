@@ -162,4 +162,42 @@ const StyledFormContact = styled.div`
     background: #06ce8d;
     border-bottom: solid 3px yellow;
   }
+
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    width: 85%;
+    form {
+      width: 70%;
+    }
+  }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    /* background: red; */
+    backdrop-filter: blur(3px);
+    height: 80vh;
+    width: 100%;
+    padding: 5px;
+    flex-direction: column;
+    .before-form {
+      /* background: blue; */
+      width: 100%;
+    }
+    .before-form > p {
+      font-size: 1em;
+    }
+    form {
+      width: 100%;
+      /* background: red; */
+    }
+    form > textarea {
+      height: 10vh;
+      width: 85%;
+      font-size: 1em;
+    }
+    form > input {
+      width: 85%;
+      font-size: 1em;
+    }
+  }
 `;

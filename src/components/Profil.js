@@ -61,6 +61,8 @@ const StyledProfil = styled.div`
     display: flex;
     flex-direction: column;
   }
+  //responsive
+  //884px = 768px
   @media screen and (max-width: 884px) {
     .sous-container-profil {
       width: 90%;
@@ -69,6 +71,24 @@ const StyledProfil = styled.div`
     }
     .sous-container-profil > div {
       height: 50%;
+    }
+  }
+
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    .sous-container-profil {
+      flex-direction: column;
+      height: ${({ $location }) => ($location === "/admin" ? "35vh" : "90vh")};
+    }
+    .sous-container-profil > div {
+      width: 90%;
+      /* height: 60%; */
+    }
+  }
+  //360px iphone 12 mini
+  @media screen and (max-width: 360px) {
+    .sous-container-profil > div {
+      height: 60%;
     }
   }
 `;

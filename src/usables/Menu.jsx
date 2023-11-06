@@ -60,4 +60,22 @@ const StyledMenu = styled.header`
     transition: 0.5s;
     border-bottom: solid 5px pink;
   }
+
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    width: 70%;
+    transform: translate(25%, 0%);
+    li {
+      width: 25%;
+    }
+  }
+
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    /* background: red; */
+    width: 100%;
+    bottom: 20px;
+    transform: translate(0%, 0%);
+  }
 `;

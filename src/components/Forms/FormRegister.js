@@ -116,4 +116,8 @@ const StyledFormRegister = styled.form`
     border: none;
     border-radius: 3px;
   }
+  //responsive iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    width: 85%;
+  }
 `;

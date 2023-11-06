@@ -41,4 +41,15 @@ const StyledBoxConnectRegister = styled.div`
   flex-direction: column;
   align-items: center;
   background: greenyellow;
+  //responsiv 884px
+  @media screen and (max-width: 884px) {
+    width: 70%;
+  }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    width: 90%;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+  }
 `;
