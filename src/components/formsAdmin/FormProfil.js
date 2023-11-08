@@ -105,17 +105,8 @@ const FormProfil = () => {
         setSpin(false);
         console.log("mainetnat on est la haha");
         someUpdateOrAll(name, city, titre, description, imgSelectedPreview);
-        // return alert(
-        //   `Voici le nom ${name} la ville ${city} le titre ${titre} les description ${description}`
-        // );
-        // return setAlert("Un des champs est rempli même l'image");
       }
     }
-  };
-
-  const updateJustImgProfil = (e) => {
-    e.preventDefault();
-    setAlert("Update juste l'img du profil");
   };
 
   //to download picture local
@@ -148,14 +139,6 @@ const FormProfil = () => {
 
   //to preview
   useEffect(() => {
-    // description ? setWatchToImg(true) : setWatchToImg(false);
-    // const keyExist = Object.keys(dataProfil);
-    // console.log(keyExist);
-    // keyExist.length > 0 ? setWatchToImg(true) : setWatchToImg(false);
-    // if (name || city || titre || description === "") {
-    //   setWatchToImg(false);
-    // }
-
     if (imgSelectedPreview) {
       Resizer.imageFileResizer(
         imgSelectedPreview,
@@ -170,11 +153,6 @@ const FormProfil = () => {
         "base64"
       );
     }
-    //on recréer le tableau pour un preview
-    // console.log("icici");
-    // console.log(imgUri);
-    // console.log(dataProfil);
-    // console.log(dataProfil.title);
     setDataProfil((prevData) => ({
       ...prevData,
       title: titre ? titre : dataProfilStatic.title,
