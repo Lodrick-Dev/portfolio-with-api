@@ -20,7 +20,7 @@ const PreviewPost = () => {
   // console.log(imgPostPreview);
 
   const cancelPreview = () => {
-    // setSkillsSelect([]);
+    setSkillsSelect([]);
     setPostPreview([]);
     setFormPost(false);
     setImgPostPreview(null);
@@ -28,25 +28,26 @@ const PreviewPost = () => {
   useEffect(() => {
     console.log(skillsSelect);
     //resize l'image, 100 c'est la meilleire qualité, 0 pour la rotation
-    if (imgPostPreview) {
-      Resizer.imageFileResizer(
-        imgPostPreview,
-        1080,
-        1080,
-        "PNG",
-        100,
-        0,
-        (uri) => {
-          setPreviewImg(uri);
-        },
-        "base64"
-      );
-    }
+    // if (imgPostPreview) {
+    //   Resizer.imageFileResizer(
+    //     imgPostPreview,
+    //     1080,
+    //     1080,
+    //     "PNG",
+    //     100,
+    //     0,
+    //     (uri) => {
+    //       setPreviewImg(uri);
+    //     },
+    //     "base64"
+    //   );
+    // }
   }, [imgPostPreview]);
 
   return (
     <StyledPreviewPost>
       <strong>Prévisualisation</strong>
+      {/* <ImagePreviewPost previewImg={previewImg} /> */}
       <ImagePreviewPost previewImg={previewImg} />
       <h1>{postPreview[0]}</h1>
       <span>{postPreview[1]}</span>

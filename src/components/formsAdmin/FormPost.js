@@ -4,7 +4,6 @@ import TitleMedium from "../../usables/TitleMedium";
 import Button from "../../usables/Button";
 import { MdOutlinePostAdd } from "react-icons/md";
 import { SlideInSection } from "../../context/SlideInSectionContext";
-import InputChangeImg from "../../usables/InputChangeImg";
 import CheckBox from "../adminComponents/CheckBox";
 import { Dynamic } from "../../context/ToDynamicContext";
 import axios from "axios";
@@ -16,27 +15,14 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
     setFormPost,
     setPostPreview,
     postPreview,
-    imgPostPreview,
     setImgPostPreview,
+    imgPostPreview,
   } = SlideInSection(); //to preview post
   const [toChangeImg, setToChangeImg] = useState(false);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
-  const imgSelectedCurrent = useRef();
-  const [previewUrl, setPreviewUrl] = useState("");
   let data;
-
-  //small fonction to prepare to img
-  const prepareImg = (img, id) => {
-    data = new FormData();
-    data.append("imgpostupload", img);
-    data.append("id", id);
-  };
-  //action fonction
-  const changeImgCurrent = () => {
-    imgSelectedCurrent.current.click();
-  };
 
   const subForm = async (e) => {
     e.preventDefault();
@@ -58,32 +44,39 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
           content: description,
           lien: link,
           skills: skillsSelect,
-          img: imgPostPreview ? "data" : undefined,
+          img: imgPostPreview ? 1 : undefined,
         },
       }).then((res) => {
         console.log(res);
         if (res.data.id) {
-          //Traitement img ici
-          prepareImg(imgPostPreview, res.data.id);
-          sendImg(res.data.id);
+          console.log("ici bro");
           //on doit effacé les chmaps remettre a zéro après l'envoie de l'image
-          setName("");
-          setDescription("");
-          setLink("");
-          setSkillsSelect([]);
-          setImgPostPreview(null);
-          // setCallAgain(!callAgain);
-          // setSpin(false);
-        } else {
+          sendImg(res.data.id);
+          // setName("");
+          // setDescription("");
+          // setLink("");
+          // setSkillsSelect([]);
+        }
+        if (!imgPostPreview) {
           console.log(res);
           setName("");
           setDescription("");
           setLink("");
           setSkillsSelect([]);
-          setImgPostPreview(null);
           setCallAgain(!callAgain);
+          setImgPostPreview(null);
           setSpin(false);
+          return setAlert(res.data.message);
         }
+        // else {
+        //   console.log(res);
+        //   setName("");
+        //   setDescription("");
+        //   setLink("");
+        //   setSkillsSelect([]);
+        //   setCallAgain(!callAgain);
+        //   setSpin(false);
+        // }
         if (res.data.error) {
           setSpin(false);
           return setAlert(res.data.error);
@@ -94,7 +87,6 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
       });
     } else {
       setSpin(false);
-      viewCaptureUrl();
       return setAlert("Erreur : Les champs nécéssaires doivent être rempli");
     }
   };
@@ -103,17 +95,38 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
     //id vient de res.data.id,
     // method "put"
     try {
+      // Pour convertir en img,Créer un objet File à partir de imgPostPreview
+      const base64Image = imgPostPreview.replace(
+        /^data:image\/(png|jpeg);base64,/,
+        ""
+      );
+      const byteCharacters = atob(base64Image);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "image/png" });
+      const imageFile = new File([blob], "image.png", { type: "image/png" });
+
+      // Créer un objet FormData et ajouter l'image
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("imgpostupload", imageFile);
       await axios({
         method: "put",
         url: `${process.env.REACT_APP_API_URI}post/update/img/${id}`,
         withCredentials: true,
-        data,
+        data: formData,
       }).then((res) => {
-        console.log(res);
-
         setAlert(res.data.message);
         setSpin(false);
         setCallAgain(!callAgain);
+        setImgPostPreview(null);
+        setName("");
+        setDescription("");
+        setLink("");
+        setSkillsSelect([]);
       });
     } catch (error) {
       console.log(error);
@@ -122,17 +135,21 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
   };
   //to capture apercu url
   const viewCaptureUrl = async () => {
+    console.log(link);
+    const regex = /https?:\/\/[^\s/$.?#].[^\s]*/;
+    if (!regex.test(link)) {
+      return setAlert("Erreur : Lien incorrect");
+    }
     try {
       axios({
-        method: "get",
+        method: "post",
         url: `${process.env.REACT_APP_API_URI}preview/url`,
         withCredentials: true,
-        responseType: "blob",
+        data: {
+          url: link,
+        },
       }).then((res) => {
-        console.log(res.data);
-        const blob = new Blob([res.data]);
-        const urlBlob = URL.createObjectURL(blob);
-        setPreviewUrl(urlBlob);
+        setImgPostPreview(res.data);
       });
     } catch (error) {
       console.log(error);
@@ -148,13 +165,13 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
     }
     // console.log(postPreview.length);
     //check if all index have value to display input file
-    for (let i = 0; i < postPreview.length; i++) {
-      if (postPreview[i] !== "") {
-        setToChangeImg(true);
-      } else {
-        setToChangeImg(false);
-      }
-    }
+    // for (let i = 0; i < postPreview.length; i++) {
+    //   if (postPreview[i] !== "") {
+    //     setToChangeImg(true);
+    //   } else {
+    //     setToChangeImg(false);
+    //   }
+    // }
   }, [name, link, description]);
 
   return (
@@ -179,14 +196,6 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
         onChange={(e) => setDescription(e.target.value)}
       ></textarea>
       <CheckBox />
-      {toChangeImg && (
-        <InputChangeImg
-          actionClick={() => changeImgCurrent()}
-          imgSelectedCurrent={imgSelectedCurrent}
-          actionChange={(e) => setImgPostPreview(e.target.files[0])}
-        />
-      )}
-      {previewUrl && <img src={previewUrl} alt="appercu" />}
       <Button text={"Poster"} icon={<MdOutlinePostAdd />} />
     </StyledFormPost>
   );

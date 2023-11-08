@@ -5,7 +5,7 @@ const SlideInSectionContext = createContext();
 export const SlideInSectionContextProvider = ({ children }) => {
   const [formPost, setFormPost] = useState(false);
   const [postPreview, setPostPreview] = useState([]);
-  const [imgPostPreview, setImgPostPreview] = useState();
+  const [imgPostPreview, setImgPostPreview] = useState(null);
   return (
     <SlideInSectionContext.Provider
       value={{
