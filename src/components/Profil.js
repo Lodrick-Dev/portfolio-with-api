@@ -81,8 +81,8 @@ const StyledProfil = styled.div`
       height: ${({ $location }) => ($location === "/admin" ? "35vh" : "90vh")};
     }
     .sous-container-profil > div {
-      width: 90%;
-      /* height: 60%; */
+      width: 95%;
+      height: 60%;
     }
   }
   //360px iphone 12 mini

@@ -86,4 +86,11 @@ const StyledDescription = styled.div`
         $location === "/admin" ? "0.9em" : "1em"};
     }
   }
+
+  //360px iphone 12 mini
+  @media screen and (max-width: 428px) {
+    p {
+      height: 15vh;
+    }
+  }
 `;
