@@ -69,4 +69,29 @@ const StyledListsProjets = styled.div`
     font-size: 1.3em;
     cursor: alias;
   }
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    background: none;
+  }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    span {
+      display: block;
+      margin: 5px;
+      text-align: center;
+    }
+    ul {
+      justify-content: center;
+    }
+    ul > li {
+      font-size: 1.3em;
+      margin: 3px;
+    }
+  }
 `;

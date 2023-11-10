@@ -96,4 +96,12 @@ const StyledPreviewPost = styled.div`
     display: flex;
     background: yellow;
   }
+  //responsive
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    strong,
+    span {
+      font-size: 0.7em;
+    }
+  }
 `;

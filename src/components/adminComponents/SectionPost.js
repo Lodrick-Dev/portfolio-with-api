@@ -27,4 +27,19 @@ const StyledSectionPost = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    width: 95%;
+    margin: 10px auto;
+  }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    flex-direction: column;
+    height: 100vh;
+  }
+  //360 Iphone 12 mini
+  @media screen and (max-width: 360px) {
+    /* height: 90vh; */
+  }
 `;

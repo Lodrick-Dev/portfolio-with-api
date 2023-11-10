@@ -224,8 +224,36 @@ const StyledFormPost = styled.form`
     margin-top: 10px;
     height: 15vh;
   }
-  img {
+  /* img {
     width: 100%;
-    /* height: 25px; */
+  } */
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    width: 45%;
+    height: 50%;
+  }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    background: pink;
+    width: 90%;
+    height: 70%;
+    justify-content: flex-start;
+    input,
+    textarea {
+      font-size: 0.9em;
+    }
+  }
+  //360 Iphone 12 mini
+  @media screen and (max-width: 360px) {
+    width: 100%;
+    margin-bottom: 10px;
+
+    input,
+    textarea {
+      font-size: 0.8em;
+      padding: 3px;
+      border-radius: 3px;
+    }
   }
 `;

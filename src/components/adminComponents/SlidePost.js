@@ -30,4 +30,15 @@ const StyledSlidePost = styled.div`
   display: flex;
   width: 50%;
   height: 90%;
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    height: 50%;
+    overflow-x: scroll;
+  }
+  @media screen and (max-width: 428px) {
+    width: 90%;
+    height: 50vh;
+    flex-wrap: wrap;
+  }
 `;

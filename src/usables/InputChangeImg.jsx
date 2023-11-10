@@ -43,4 +43,9 @@ const StyledInputChangeImg = styled.div`
   input {
     display: none;
   }
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    width: 20%;
+  }
 `;

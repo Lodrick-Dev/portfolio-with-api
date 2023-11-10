@@ -149,4 +149,11 @@ const StyledFormPassword = styled.form`
   button {
     width: 45%;
   }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    width: 90%;
+    div {
+      width: 80%;
+    }
+  }
 `;

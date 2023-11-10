@@ -77,7 +77,7 @@ const StyledCheckBox = styled.div`
   overflow-y: scroll;
   div {
     background: grey;
-    width: 25%;
+    /* width: 25%; */
     padding: 5px;
     cursor: pointer;
     border-radius: 5px;
@@ -93,5 +93,37 @@ const StyledCheckBox = styled.div`
   }
   .box-checked {
     background: red;
+  }
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    flex-wrap: wrap;
+    /* width: 100%; */
+    div {
+      margin: 5px;
+      width: 40%;
+    }
+    div > label {
+      font-size: 0.8em;
+    }
+  }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    /* width: 30%; */
+    height: 15vh;
+    div > label {
+      font-size: 0.7em;
+    }
+  }
+  //360 Iphone 12 mini
+  @media screen and (max-width: 360px) {
+    div {
+      padding: 3px;
+      margin: 5px;
+    }
+    div > input {
+      display: none;
+      margin-top: 3px;
+    }
   }
 `;

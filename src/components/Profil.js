@@ -68,27 +68,25 @@ const StyledProfil = styled.div`
       width: 90%;
       padding: 5px;
       justify-content: space-around;
+      height: ${({ $location }) => ($location === "/admin" ? "45vh" : "80vh")};
     }
     .sous-container-profil > div {
-      height: 50%;
+      /* height: 50%; */
+      height: ${({ $location }) => ($location === "/admin" ? "70%" : "50%")};
+      width: 65%;
     }
   }
 
   //428px iphone 13 pro max
   @media screen and (max-width: 428px) {
+    width: ${({ $location }) => ($location === "/admin" ? "90%" : "100%")};
     .sous-container-profil {
       flex-direction: column;
-      height: ${({ $location }) => ($location === "/admin" ? "35vh" : "90vh")};
+      height: ${({ $location }) => ($location === "/admin" ? "45vh" : "90vh")};
     }
     .sous-container-profil > div {
       width: 95%;
-      height: 60%;
-    }
-  }
-  //360px iphone 12 mini
-  @media screen and (max-width: 360px) {
-    .sous-container-profil > div {
-      height: 60%;
+      height: ${({ $location }) => ($location === "/admin" ? "65%" : "50%")};
     }
   }
 `;

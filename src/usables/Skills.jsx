@@ -75,9 +75,20 @@ const StyledSkills = styled.ul`
     background: greenyellow;
     cursor: ${({ $csstext }) => ($csstext ? "pointer" : "default")};
   }
+
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    li {
+      padding: 3px;
+      font-size: 1em;
+      margin: 3px;
+    }
+  }
   //428px iphone 13 pro max
   @media screen and (max-width: 428px) {
     /* background: red; */
+    margin: 10px auto;
     width: 100%;
     li {
       padding: 3px;

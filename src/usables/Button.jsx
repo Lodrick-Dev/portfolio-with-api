@@ -37,4 +37,10 @@ const StyledButton = styled.button`
     margin-left: 10px;
     /* background: red; */
   }
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    width: 80%;
+    font-size: 0.9em;
+  }
 `;

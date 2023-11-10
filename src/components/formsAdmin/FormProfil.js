@@ -234,7 +234,7 @@ const FormProfil = () => {
 export default FormProfil;
 
 const StyledFormProfil = styled.div`
-  background: green;
+  /* background: green; */
   padding: 10px;
   align-self: center;
   display: flex;
@@ -282,5 +282,22 @@ const StyledFormProfil = styled.div`
   }
   form > textarea {
     height: 15vh;
+  }
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    padding: 3px;
+    width: 30%;
+    form {
+      width: 100%;
+    }
+    #delete {
+      width: 50%;
+    }
+  }
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    width: 90%;
+    /* background: blue; */
   }
 `;

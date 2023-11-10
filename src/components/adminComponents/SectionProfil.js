@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 import FormProfil from "../formsAdmin/FormProfil";
-import PreviewProfil from "./PreviewProfil";
 import Profil from "../Profil";
 
 const SectionProfil = () => {
@@ -15,9 +14,13 @@ const SectionProfil = () => {
 
 export default SectionProfil;
 const StyledSectionProfil = styled.section`
-  background: pink;
+  background: darkolivegreen;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   padding: 20px;
+  //428px iphone 13 pro max
+  @media screen and (max-width: 428px) {
+    flex-direction: column;
+  }
 `;

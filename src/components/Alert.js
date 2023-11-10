@@ -75,4 +75,10 @@ const StyledAlert = styled.div`
       /* transition: 1s; */
     }
   }
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    height: 5vh;
+    font-size: 1em;
+  }
 `;
