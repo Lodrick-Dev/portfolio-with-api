@@ -19,4 +19,7 @@ export default forwardRef(Projets);
 
 const StyledProjets = styled.div`
   height: 100vh;
+  @media screen and (max-width: 428px) {
+    width: 100%;
+  }
 `;

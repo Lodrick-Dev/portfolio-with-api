@@ -25,4 +25,13 @@ const StyledProjetPublic = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  //responsive
+  //884px = 768px
+  @media screen and (max-width: 884px) {
+    justify-content: flex-start;
+  }
+  @media screen and (max-width: 428px) {
+    padding: 0px;
+  }
 `;
