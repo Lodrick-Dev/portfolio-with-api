@@ -172,6 +172,7 @@ const StyledListsProjetsPublic = styled.ul`
     }
     li > div > ul {
       /* background: blue; */
+      justify-content: flex-start;
       height: 5vh;
       flex-wrap: nowrap;
       overflow-x: scroll;
@@ -191,17 +192,31 @@ const StyledListsProjetsPublic = styled.ul`
       width: 47%;
       margin: 10px 3px !important;
     }
+    li > div > ul {
+      height: 10vh !important;
+      overflow-y: none !important;
+      justify-content: flex-start;
+    }
   }
   //390px iphone 12
   @media screen and (max-width: 390px) {
     .li-list-projets {
       margin: 10px 3px !important;
     }
+    li > div > ul {
+      height: 10vh !important;
+      overflow-y: hidden !important;
+    }
   }
   //414px iphone Xr
   @media screen and (max-width: 415px) {
     .li-list-projets {
       margin: 10px 3px !important;
+    }
+    li > div > ul {
+      height: 10vh !important;
+      overflow-y: hidden !important;
+      justify-content: flex-start;
     }
   }
 `;
