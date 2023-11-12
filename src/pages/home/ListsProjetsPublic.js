@@ -68,6 +68,28 @@ const StyledListsProjetsPublic = styled.ul`
   .li-list-projets:hover > div > strong {
     color: white;
   }
+  .li-list-projets:hover > div > p {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    height: 100%;
+    background: #39393a;
+    color: yellow;
+    font-size: 1.1em;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    text-shadow: 2px 2px 4px rgb(29 29 29);
+    border-radius: 10px;
+  }
+  .li-list-projets:hover > div > a {
+    z-index: 21;
+  }
   li > div {
     position: relative;
     height: 100%;
@@ -96,12 +118,23 @@ const StyledListsProjetsPublic = styled.ul`
     z-index: 1;
   }
   li > div p {
+    display: none;
+    /* position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    height: 100%;
+    background: blue;
     color: yellow;
     font-size: 1.1em;
     width: 100%;
     text-align: center;
     padding: 5px;
-    text-shadow: 2px 2px 4px rgb(29 29 29);
+    text-shadow: 2px 2px 4px rgb(29 29 29); */
   }
   li > div a {
     display: block;
