@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { SlideInSection } from "../context/SlideInSectionContext";
 
 const ImagePreviewPost = () => {
-  const imgDefault = "./other/posts/defaultProfil.png";
+  const imgDefault = "./other/posts/defaultprofil.png";
   const { imgPostPreview } = SlideInSection();
   return (
     <StyledImagePreview
