@@ -66,6 +66,7 @@ const StyledListsProjetsPublic = styled.ul`
     transform: scale(1.05);
   }
   .li-list-projets:hover > div > strong {
+    z-index: 21;
     color: white;
   }
   .li-list-projets:hover > div > p {
