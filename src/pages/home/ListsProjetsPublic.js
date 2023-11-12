@@ -184,12 +184,24 @@ const StyledListsProjetsPublic = styled.ul`
       text-align: center;
     }
   }
-  //360px iphone 13 pro max
+  //360px iphone 12 mini
   @media screen and (max-width: 360px) {
     padding: 0px;
     .li-list-projets {
       width: 47%;
-      margin: 10px 3px;
+      margin: 10px 3px !important;
+    }
+  }
+  //390px iphone 12
+  @media screen and (max-width: 390px) {
+    .li-list-projets {
+      margin: 10px 3px !important;
+    }
+  }
+  //414px iphone Xr
+  @media screen and (max-width: 415px) {
+    .li-list-projets {
+      margin: 10px 3px !important;
     }
   }
 `;

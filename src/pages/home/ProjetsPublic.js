@@ -33,5 +33,6 @@ const StyledProjetPublic = styled.div`
   }
   @media screen and (max-width: 428px) {
     padding: 0px;
+    overflow-x: scroll;
   }
 `;
