@@ -91,6 +91,11 @@ const StyledListsProjetsPublic = styled.ul`
   .li-list-projets:hover > div > a {
     z-index: 21;
   }
+  .li-list-projets:hover > div > ul {
+    position: absolute;
+    z-index: 21;
+    bottom: 10px;
+  }
   li > div {
     position: relative;
     height: 100%;
