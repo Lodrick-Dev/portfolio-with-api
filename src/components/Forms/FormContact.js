@@ -29,7 +29,7 @@ const FormContact = () => {
         withCredentials: true,
         data: { hidden: inputNot, emailCatch: email, text: message, name },
       }).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.message && res.data.message.includes("Erreur")) {
           setSpin(false);
 

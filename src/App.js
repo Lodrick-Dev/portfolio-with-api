@@ -9,6 +9,9 @@ import { Dynamic } from "./context/ToDynamicContext";
 import PopUp from "./usables/PopUp";
 import Alert from "./components/Alert";
 import Spin from "./components/Spin";
+import CommunityManager from "./pages/Cm/CommunityManager";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 function App() {
   const { popChange } = Dynamic();
   const { alert } = Dynamic();
@@ -22,6 +25,7 @@ function App() {
       {/* <Alert /> */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/community/manager" element={<CommunityManager />} />
         <Route
           path="/admin"
           element={
@@ -31,6 +35,7 @@ function App() {
           }
         />
       </Routes>
+      <ToastContainer position="bottom-right" />
       <Footer />
     </>
   );

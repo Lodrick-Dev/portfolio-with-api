@@ -2,11 +2,13 @@ import React from "react";
 import { styled } from "styled-components";
 import { ImGithub } from "react-icons/im";
 import TitleMedium from "./TitleMedium";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const nav = useNavigate();
   return (
     <StyledFooter>
-      <TitleMedium text={"Footer"} />
+      <TitleMedium text={"Lodrick Undefined"} actionClick={() => nav("/")} />
       <a href="https://github.com/Lodrick-Dev" target="_blank">
         Github <ImGithub />{" "}
       </a>
