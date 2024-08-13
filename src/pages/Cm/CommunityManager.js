@@ -36,8 +36,8 @@ const CommunityManager = () => {
             d'idées de contenu pertinentes et engageantes.
           </p>
           <p>
-            <span>Postes Interactifs Automatisés :</span> Créez des sondages,
-            des questions-réponses et d'autres types de contenu interactif pour
+            <span>Posts Interactifs Automatisés :</span> Créez des sondages, des
+            questions-réponses et d'autres types de contenu interactif pour
             maximiser l'engagement de votre audience.
           </p>
           <p>
