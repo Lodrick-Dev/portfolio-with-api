@@ -26,12 +26,19 @@ const StyledProjetPublic = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  span {
+    background: #2d5092;
+    padding: 10px;
+    font-size: 1.3em;
+    border-radius: 10px;
+    color: white;
+  }
   //responsive
   //884px = 768px
   @media screen and (max-width: 884px) {
     justify-content: flex-start;
   }
-  @media screen and (max-width: 428px) {
+  @media screen and (max-width: 429px) {
     padding: 0px;
     overflow-x: scroll;
   }

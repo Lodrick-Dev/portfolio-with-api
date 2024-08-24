@@ -122,7 +122,9 @@ const StyledFormContact = styled.div`
   .before-form > p {
     margin-top: 20px;
     font-size: 1.5em;
-    color: #cacaca;
+    /* color: #cacaca; */
+    color: yellow;
+    font-weight: 800;
   }
   form {
     width: 50%;

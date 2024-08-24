@@ -78,15 +78,16 @@ const StyledProfil = styled.div`
   }
 
   //428px iphone 13 pro max
-  @media screen and (max-width: 428px) {
+  @media screen and (max-width: 429px) {
     width: ${({ $location }) => ($location === "/admin" ? "90%" : "100%")};
     .sous-container-profil {
+      width: 95%;
       flex-direction: column;
       height: ${({ $location }) => ($location === "/admin" ? "45vh" : "90vh")};
     }
     .sous-container-profil > div {
       width: 95%;
-      height: ${({ $location }) => ($location === "/admin" ? "65%" : "50%")};
+      height: ${({ $location }) => ($location === "/admin" ? "65%" : "60%")};
     }
   }
 `;
