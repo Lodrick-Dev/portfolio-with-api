@@ -9,7 +9,6 @@ import { Dynamic } from "../context/ToDynamicContext";
 
 const Description = ({ dataProfil }) => {
   const { location } = Dynamic();
-  console.log(dataProfil);
 
   return (
     //le $ devant location car StyledComponent veut le renvoyé dans le dom
