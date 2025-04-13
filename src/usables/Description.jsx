@@ -9,12 +9,12 @@ import { Dynamic } from "../context/ToDynamicContext";
 
 const Description = ({ dataProfil }) => {
   const { location } = Dynamic();
+  console.log(dataProfil);
+
   return (
     //le $ devant location car StyledComponent veut le renvoyé dans le dom
     <StyledDescription $location={location.pathname}>
-      <strong>
-        <MdOutlinePermIdentity className="i-in-descrip" /> {dataProfil.pseudo}
-      </strong>
+      <strong>{dataProfil.title}</strong>
       <span>
         {" "}
         <MdOutlineLocationOn className="i-in-descrip" />{" "}
