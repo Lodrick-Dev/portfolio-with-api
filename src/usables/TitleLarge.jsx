@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import { Dynamic } from "../context/ToDynamicContext";
+import { COLORS } from "./COLORS";
 
 const TitleLarge = ({ text }) => {
   const { setPopChange, location } = Dynamic();
@@ -11,7 +12,7 @@ const TitleLarge = ({ text }) => {
   return (
     //le $ devant location car StyledComponent veut le renvoye au dom
     <StyledTitle onDoubleClick={() => admin()} $location={location.pathname}>
-      {text ? text : "Aucun titre"}
+      👾 {text ? text : "Aucun titre"}
     </StyledTitle>
   );
 };
@@ -19,9 +20,9 @@ const TitleLarge = ({ text }) => {
 export default TitleLarge;
 const StyledTitle = styled.h1`
   font-size: ${({ $location }) => ($location === "/admin" ? "1.5em" : "3em")};
-  color: #06ce8d;
+  color: ${COLORS.heading1};
   user-select: none;
-  text-align: center;
+  /* text-align: center; */
 
   @media screen and (max-width: 884px) {
     font-size: 2.5em;

@@ -13,7 +13,7 @@ const Projets = (props, ref) => {
 export default forwardRef(Projets);
 
 const StyledProjets = styled.div`
-  height: 100vh;
+  width: 100%;
   @media screen and (max-width: 429px) {
     width: 100%;
   }

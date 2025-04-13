@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Dynamic } from "../context/ToDynamicContext";
+import { COLORS } from "./COLORS";
 
 const TitleMedium = ({ text, actionClick }) => {
   const { idUser } = Dynamic();
@@ -14,7 +15,7 @@ const TitleMedium = ({ text, actionClick }) => {
 export default TitleMedium;
 const StyledTitleMedium = styled.h2`
   cursor: ${({ $csstxt }) => ($csstxt ? "pointer" : "default")};
-  color: #cacaca;
+  color: ${COLORS.accent};
   font-size: 2.5em;
   //428px iphone 13 pro max
   @media screen and (max-width: 428px) {

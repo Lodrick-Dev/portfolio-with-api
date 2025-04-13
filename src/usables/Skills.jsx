@@ -53,26 +53,22 @@ const Skills = () => {
 export default Skills;
 
 const StyledSkills = styled.ul`
-  width: 80%;
-  margin: 25px auto;
+  /* width: 80%; */
+  margin-top: 10px;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  gap: 0.75rem;
   &::-webkit-scrollbar {
     display: none;
   }
   /* background: yellow; */
-  h2 {
-    width: 100%;
-    text-align: center;
-  }
   li {
-    padding: 10px;
-    font-size: 1.2em;
-    margin: 10px;
-    border-radius: 5px;
-    background: greenyellow;
+    background: #22242d;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    box-shadow: inset 2px 2px 5px #1a1b1f, inset -2px -2px 5px #34363f;
+    color: #00ffd5;
+    font-size: 0.9rem;
     cursor: ${({ $csstext }) => ($csstext ? "pointer" : "default")};
   }
 

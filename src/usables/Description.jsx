@@ -37,8 +37,8 @@ const StyledDescription = styled.div`
   strong,
   span {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     /* color: #06ce8d; */
     color: #cacaca;
     margin-top: 10px;
@@ -61,7 +61,7 @@ const StyledDescription = styled.div`
 
   .i-in-descrip {
     margin-right: 10px;
-    color: yellow;
+    color: white;
   }
   @media screen and (max-width: 884px) {
     strong,

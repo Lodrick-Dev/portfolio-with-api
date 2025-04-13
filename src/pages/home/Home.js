@@ -6,6 +6,9 @@ import Projets from "../../usables/Projets";
 import Contact from "../../components/Contact";
 import { ScrollSection } from "../../context/ScrollSectionContext";
 import { Dynamic } from "../../context/ToDynamicContext";
+import styled from "styled-components";
+import { COLORS } from "../../usables/COLORS";
+import Skills from "../../usables/Skills";
 
 const Home = () => {
   const { location, setSkillsSelect } = Dynamic();
@@ -89,14 +92,56 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <StyledHome>
       <Logo actionClick={() => scrolling()} />
       <Profil ref={profilRef} />
-      <Projets ref={projetsRef} />
+      <div className="skill-projets">
+        <div className="cards">
+          <span className="skill-span">🧪 Compétences</span>
+          {location.pathname !== "/admin" && <Skills />}
+        </div>
+        <div className="cards">
+          <Projets ref={projetsRef} />
+        </div>
+      </div>
       <Contact ref={contactRef} />
-      <Menu />
-    </div>
+      {/* <Menu /> */}
+    </StyledHome>
   );
 };
 
 export default Home;
+const StyledHome = styled.div`
+  background: ${COLORS.background};
+  .skill-projets {
+    display: grid;
+    gap: 2rem;
+    max-width: 960px;
+    margin: 0 auto 30px;
+    padding: 0 1rem;
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .cards {
+      .skill-span {
+        color: white;
+      }
+      background: #2a2b31;
+      border-radius: 20px;
+      margin: 0px 15px;
+      padding: 2rem;
+      box-shadow: 8px 8px 20px #18191f, -8px -8px 20px #34353f;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      height: 70vh;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 445px) {
+      .cards {
+        height: 50vh;
+      }
+    }
+  }
+`;

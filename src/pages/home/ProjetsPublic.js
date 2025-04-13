@@ -7,10 +7,7 @@ const ProjetPublic = () => {
   const { listProjets } = DataPublic();
   return (
     <StyledProjetPublic>
-      <span>
-        Nombre de projet :{" "}
-        <strong>{listProjets ? listProjets.length : 0}</strong>{" "}
-      </span>
+      <span>🚀 {listProjets.length} Projets</span>
       <ListsProjetsPublic />
     </StyledProjetPublic>
   );
@@ -19,16 +16,14 @@ const ProjetPublic = () => {
 export default ProjetPublic;
 
 const StyledProjetPublic = styled.div`
-  /* background: pink; */
-  padding: 10px;
+  width: 100%;
+  /* padding: 10px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  /* justify-content: center;
+  align-items: center; */
   span {
-    background: #2d5092;
-    padding: 10px;
+    /* padding: 10px; */
     font-size: 1.3em;
     border-radius: 10px;
     color: white;

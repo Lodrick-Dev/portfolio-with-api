@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { COLORS } from "./COLORS";
 const Button = ({ text, icon, actionClick }) => {
   return (
     <StyledButton
@@ -18,9 +19,9 @@ export default Button;
 const StyledButton = styled.button`
   padding: 5px;
   background: ${({ $csstext }) =>
-    $csstext === "Annuler" ? "orange" : "yellow"};
-  border: none;
-  border-radius: 3px;
+    $csstext === "Annuler" ? "orange" : COLORS.cardBackground};
+  border: solid 2px ${COLORS.accent};
+  border-radius: 5px;
   margin: 10px 0px;
   cursor: pointer;
   /* width: 50% !important; */
@@ -30,6 +31,7 @@ const StyledButton = styled.button`
   align-items: center;
   font-size: 1.2em;
   user-select: none;
+  color: ${COLORS.accent};
   /* .icon {
     margin-left: 10px;
   } */

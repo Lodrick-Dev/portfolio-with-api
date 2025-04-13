@@ -4,6 +4,7 @@ import TitleMedium from "../../usables/TitleMedium";
 import Button from "../../usables/Button";
 import { Dynamic } from "../../context/ToDynamicContext";
 import axios from "axios";
+import { COLORS } from "../../usables/COLORS";
 
 const FormContact = () => {
   const { setSpin, setAlert } = Dynamic();
@@ -94,10 +95,11 @@ const FormContact = () => {
 export default FormContact;
 
 const StyledFormContact = styled.div`
-  /* background: green; */
-  background: rgba(115, 113, 113, 0.67);
-  border-bottom: solid 10px #06ce8d;
-  border-radius: 10px;
+  background: #2a2b31;
+  border-radius: 20px;
+  margin: 0px 15px;
+  box-shadow: 8px 8px 20px #18191f, -8px -8px 20px #34353f;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 24px;
   width: 70%;
   display: flex;
@@ -115,15 +117,16 @@ const StyledFormContact = styled.div`
     align-items: center;
   }
   .before-form > hr {
+    margin-top: 10px;
     width: 100%;
     border-radius: 10px;
-    border: solid 2px #06ce8d;
+    border: solid 2px ${COLORS.accent};
   }
   .before-form > p {
     margin-top: 20px;
     font-size: 1.5em;
     /* color: #cacaca; */
-    color: yellow;
+    color: ${COLORS.textPrimary};
     font-weight: 800;
   }
   form {
@@ -143,26 +146,22 @@ const StyledFormContact = styled.div`
     margin: 10px 0px;
     outline: none;
     border: none;
-    border-bottom: solid 2px #212121;
+    background: ${COLORS.background};
+    border-bottom: solid 2px ${COLORS.accent};
+    color: ${COLORS.accent};
     border-radius: 5px;
-  }
-  form > input:focus {
-    background: #06ce8d;
-    border-bottom: solid 3px yellow;
   }
   form > textarea {
     width: 70%;
     outline: none;
     border: none;
-    border-bottom: solid 2px #212121;
+    background: ${COLORS.background};
+    border-bottom: solid 2px ${COLORS.accent};
+    color: ${COLORS.accent};
     border-radius: 5px;
     padding: 3px;
     font-size: 1.2em;
     resize: none;
-  }
-  form > textarea:focus {
-    background: #06ce8d;
-    border-bottom: solid 3px yellow;
   }
 
   //responsive
