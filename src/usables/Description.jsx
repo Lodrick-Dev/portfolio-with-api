@@ -14,11 +14,11 @@ const Description = ({ dataProfil }) => {
     //le $ devant location car StyledComponent veut le renvoyé dans le dom
     <StyledDescription $location={location.pathname}>
       <strong>{dataProfil.title}</strong>
-      <span>
+      {/* <span>
         {" "}
         <MdOutlineLocationOn className="i-in-descrip" />{" "}
         {dataProfil.localisation}{" "}
-      </span>
+      </span> */}
       <p className="animate__animated animate__bounceInUp animate__faster">
         {" "}
         <MdOutlineDescription className="i-in-descrip" />{" "}
