@@ -15,8 +15,18 @@ const ListsProjetsPublic = () => {
         listProjets.map((projet) => (
           <ul key={projet._id} className="li-list-projets">
             {/* <img src={projet.image} alt={projet.projet} /> */}
-            <span onClick={() => goWatch(projet.lien)}>{projet.projet}</span>
+            <span onClick={() => goWatch(projet.lien)}>{projet.projet} 👀</span>
             <li>{projet.content}</li>
+            {projet.lienGitFront && (
+              <strong onClick={() => goWatch(projet.lienGitFront)}>
+                Git front-end
+              </strong>
+            )}
+            {projet.lienGitApi && (
+              <strong onClick={() => goWatch(projet.lienGitApi)}>
+                Git back-end
+              </strong>
+            )}
           </ul>
         ))
       ) : (
@@ -50,6 +60,11 @@ const StyledListsProjetsPublic = styled.ul`
     li {
       width: 100%;
       color: ${COLORS.textPrimary};
+    }
+    strong {
+      margin-top: 5px;
+      cursor: pointer;
+      color: orange;
     }
   }
   /* .li-list-projets:hover {

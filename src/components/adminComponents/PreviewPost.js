@@ -51,7 +51,9 @@ const PreviewPost = () => {
       <ImagePreviewPost previewImg={previewImg} />
       <h1>{postPreview[0]}</h1>
       <span>{postPreview[1]}</span>
-      <p>{postPreview[2]}</p>
+      <span>api : {postPreview[2]}</span>
+      <span>front :{postPreview[3]}</span>
+      <p>{postPreview[4]}</p>
       {skillsSelect && <ListsSkillsToPost />}
       <span id="to-cancel" onClick={() => cancelPreview()}>
         Retour

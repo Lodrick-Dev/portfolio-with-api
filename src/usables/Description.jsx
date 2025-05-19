@@ -51,7 +51,7 @@ const StyledDescription = styled.div`
     /* font-size: 1.3em; */
     font-size: ${({ $location }) =>
       $location === "/admin" ? "0.9em" : "1.3em"};
-    height: 10vh;
+    height: 15vh;
     overflow-y: scroll;
   }
   p::-webkit-scrollbar {

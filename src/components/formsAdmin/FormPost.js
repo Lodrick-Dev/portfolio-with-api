@@ -21,6 +21,8 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
   const [toChangeImg, setToChangeImg] = useState(false);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
+  const [linkGitApi, setLinkGitApi] = useState("");
+  const [linkGitFront, setLinkGitFront] = useState("");
   const [description, setDescription] = useState("");
   let data;
 
@@ -43,6 +45,8 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
           projet: name,
           content: description,
           lien: link,
+          lienGitApi: linkGitApi,
+          lienGitFront: linkGitFront,
           skills: skillsSelect,
           img: imgPostPreview ? 1 : undefined,
         },
@@ -62,6 +66,8 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
           setName("");
           setDescription("");
           setLink("");
+          setLinkGitApi("");
+          setLinkGitFront("");
           setSkillsSelect([]);
           setCallAgain(!callAgain);
           setImgPostPreview(null);
@@ -126,6 +132,8 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
         setName("");
         setDescription("");
         setLink("");
+        setLinkGitApi("");
+        setLinkGitFront("");
         setSkillsSelect([]);
       });
     } catch (error) {
@@ -159,7 +167,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
   useEffect(() => {
     if (name !== "") {
       setFormPost(true);
-      setPostPreview([name, link, description]);
+      setPostPreview([name, link, linkGitApi, linkGitFront, description]);
     } else {
       setFormPost(false);
     }
@@ -172,7 +180,7 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
     //     setToChangeImg(false);
     //   }
     // }
-  }, [name, link, description]);
+  }, [name, link, linkGitApi, linkGitFront, description]);
 
   return (
     <StyledFormPost onSubmit={(e) => subForm(e)}>
@@ -185,9 +193,23 @@ const FormPost = ({ setSkillsSelect, skillsSelect }) => {
       />
       <input
         type="text"
-        placeholder="Lien*"
+        placeholder="Lien projet*"
         value={link ? link : ""}
         onChange={(e) => setLink(e.target.value)}
+        onBlur={() => viewCaptureUrl()}
+      />
+      <input
+        type="text"
+        placeholder="Lien git api"
+        value={linkGitApi ? linkGitApi : ""}
+        onChange={(e) => setLinkGitApi(e.target.value)}
+        onBlur={() => viewCaptureUrl()}
+      />
+      <input
+        type="text"
+        placeholder="Lien git front"
+        value={linkGitFront ? linkGitFront : ""}
+        onChange={(e) => setLinkGitFront(e.target.value)}
         onBlur={() => viewCaptureUrl()}
       />
       <textarea

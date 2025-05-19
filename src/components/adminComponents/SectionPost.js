@@ -33,7 +33,7 @@ const StyledSectionPost = styled.section`
     width: 95%;
     margin: 10px auto;
   }
-  //428px iphone 13 pro max
+  //428px iphone 13 pro maxx
   @media screen and (max-width: 428px) {
     flex-direction: column;
     height: 100vh;
